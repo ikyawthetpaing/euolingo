@@ -4,6 +4,7 @@ import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 
 import { BreakpointsProvider } from "@/context/breakpoints";
+import { LanguageProvider } from "@/context/language";
 import { ThemeProvider } from "@/context/theme";
 
 export {
@@ -47,9 +48,11 @@ function RootLayoutNav() {
   return (
     <ThemeProvider>
       <BreakpointsProvider>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(main)" />
-        </Stack>
+        <LanguageProvider>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(main)" />
+          </Stack>
+        </LanguageProvider>
       </BreakpointsProvider>
     </ThemeProvider>
   );

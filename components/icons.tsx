@@ -9,4 +9,7 @@ export const Icons = {
   chevronDown: ({ size = 24, color = "#000" }: IconProps) => (
     <Feather name="chevron-down" size={size} color={color} />
   ),
+  chevronUp: ({ size = 24, color = "#000" }: IconProps) => (
+    <Feather name="chevron-up" size={size} color={color} />
+  ),
 };
