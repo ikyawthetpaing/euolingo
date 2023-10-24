@@ -1,4 +1,4 @@
 export const layouts = {
-  padding: 12,
+  padding: 14,
   borderWidth: 2,
 };

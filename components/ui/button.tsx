@@ -79,7 +79,8 @@ const useThemedStyles = ({
   hovered: boolean;
   disabled?: boolean | null;
 }) => {
-  const { background, border, primary, accent, muted } = useTheme();
+  const { background, border, primary, accent, muted, accentForeground } =
+    useTheme();
 
   const styles = StyleSheet.create({
     common: {
@@ -96,10 +97,13 @@ const useThemedStyles = ({
     outline: {
       borderWidth: layouts.borderWidth,
       borderColor: border,
-      backgroundColor: hovered || pressed ? accent : background,
+      backgroundColor: hovered || pressed ? accent : "rgba(0, 0, 0, 0)",
     },
     ghost: {
-      padding: 0,
+      backgroundColor:
+        pressed || hovered
+          ? changeColorOpacity(accentForeground, 0.15)
+          : "rgba(0, 0, 0, 0)",
     },
   });
 

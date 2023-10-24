@@ -1,12 +1,14 @@
 import { Image } from "expo-image";
+import { router } from "expo-router";
 import Head from "expo-router/head";
 import { Pressable } from "react-native";
 
 import { Text, View } from "@/components/themed";
 import { appConfig } from "@/config/app";
-import { languages } from "@/config/language";
 import { layouts } from "@/constants/layouts";
+import { courses } from "@/content/courses";
 import { useBreakpoint } from "@/context/breakpoints";
+import { useCourse } from "@/context/course";
 import { useLanguage } from "@/context/language";
 import { useTheme } from "@/context/theme";
 import { commonTranslations } from "@/translations/common";
@@ -15,6 +17,8 @@ export default function Register() {
   const { border, accent, background } = useTheme();
   const breakpoint = useBreakpoint();
   const { language } = useLanguage();
+  const { setCourseId } = useCourse();
+
   return (
     <>
       <Head>
@@ -47,44 +51,50 @@ export default function Register() {
                 flexWrap: "wrap",
               }}
             >
-              {languages.map((language, index) => (
-                <Pressable
-                  key={index}
-                  style={{
-                    width: breakpoint == "sm" ? "48%" : "24%",
-                  }}
-                >
-                  {({ pressed, hovered }) => (
-                    <View
-                      style={{
-                        padding: layouts.padding,
-                        borderWidth: layouts.borderWidth,
-                        borderColor: border,
-                        alignItems: "center",
-                        borderRadius: layouts.padding,
-                        gap: layouts.padding,
-                        backgroundColor:
-                          hovered || pressed ? accent : background,
-                      }}
-                    >
+              {courses
+                .filter(({ id }) => id !== language)
+                .map((course, index) => (
+                  <Pressable
+                    key={index}
+                    style={{
+                      width: breakpoint == "sm" ? "48%" : "24%",
+                    }}
+                    onPress={() => {
+                      setCourseId(course.id);
+                      router.push("/learn");
+                    }}
+                  >
+                    {({ pressed, hovered }) => (
                       <View
                         style={{
-                          width: 100,
-                          aspectRatio: 4 / 3,
-                          overflow: "hidden",
-                          borderRadius: 6,
+                          padding: layouts.padding,
+                          borderWidth: layouts.borderWidth,
+                          borderColor: border,
+                          alignItems: "center",
+                          borderRadius: layouts.padding,
+                          gap: layouts.padding,
+                          backgroundColor:
+                            hovered || pressed ? accent : background,
                         }}
                       >
-                        <Image
-                          source={language.flag}
-                          style={{ width: "100%", height: "100%" }}
-                        />
+                        <View
+                          style={{
+                            width: 100,
+                            aspectRatio: 4 / 3,
+                            overflow: "hidden",
+                            borderRadius: 6,
+                          }}
+                        >
+                          <Image
+                            source={course.image}
+                            style={{ width: "100%", height: "100%" }}
+                          />
+                        </View>
+                        <Text style={{ fontSize: 18 }}>{course.name}</Text>
                       </View>
-                      <Text style={{ fontSize: 18 }}>{language.name}</Text>
-                    </View>
-                  )}
-                </Pressable>
-              ))}
+                    )}
+                  </Pressable>
+                ))}
             </View>
           </View>
         </View>

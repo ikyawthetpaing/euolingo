@@ -4,7 +4,9 @@ import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 
 import { BreakpointsProvider } from "@/context/breakpoints";
+import { CourseProvider } from "@/context/course";
 import { LanguageProvider } from "@/context/language";
+import { ProtectedRouteProvider } from "@/context/protected-route";
 import { ThemeProvider } from "@/context/theme";
 
 export {
@@ -14,7 +16,7 @@ export {
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "(main)",
+  initialRouteName: "(guest)",
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -49,9 +51,11 @@ function RootLayoutNav() {
     <ThemeProvider>
       <BreakpointsProvider>
         <LanguageProvider>
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(main)" />
-          </Stack>
+          <CourseProvider>
+            <ProtectedRouteProvider>
+              <Stack screenOptions={{ headerShown: false }} />
+            </ProtectedRouteProvider>
+          </CourseProvider>
         </LanguageProvider>
       </BreakpointsProvider>
     </ThemeProvider>

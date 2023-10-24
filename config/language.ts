@@ -12,7 +12,7 @@ export const languages: LanguageDetails[] = [
     flag: "https://www.svgrepo.com/show/405559/flag-for-flag-myanmar-burma.svg",
   },
   {
-    key: "jpn",
+    key: "jp",
     name: "日本語",
     flag: "https://www.svgrepo.com/show/249004/japan.svg",
   },

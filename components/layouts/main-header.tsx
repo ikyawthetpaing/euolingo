@@ -3,7 +3,7 @@ import { Image } from "expo-image";
 import { Link } from "expo-router";
 import { LayoutRectangle, Pressable } from "react-native";
 
-import { Icons } from "@/components/icons";
+import { Icon } from "@/components/icons";
 import { STATUSBAR_HEIGHT } from "@/components/status-bar";
 import { Text, View, ViewProps } from "@/components/themed";
 import { appConfig } from "@/config/app";
@@ -90,13 +90,12 @@ export function MainHeader({ ...props }: Props) {
                   }: ${getLanguage(language)?.name}`}
             </Text>
             {open ? (
-              <Icons.chevronUp color={mutedForeground} />
+              <Icon icon="chevronUp" size={24} />
             ) : (
-              <Icons.chevronDown color={mutedForeground} />
+              <Icon icon="chevronDown" size={24} />
             )}
           </Pressable>
           {/* select language */}
-          {/* <Pressable style={{po}}> */}
           <View
             style={[
               {
@@ -154,7 +153,6 @@ export function MainHeader({ ...props }: Props) {
               </Pressable>
             ))}
           </View>
-          {/* </Pressable> */}
         </View>
       </View>
     </View>

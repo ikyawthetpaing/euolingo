@@ -35,14 +35,12 @@ export default function Home() {
           <View
             style={{
               flexDirection: breakpoint === "sm" ? "column" : "row",
-              gap: layouts.padding,
+              gap: layouts.padding * 2,
             }}
           >
-            <View style={[isWeb() ? { flex: 1 } : {}]}>
+            <View style={[isWeb() ? { flex: 1, flexShrink: 0 } : {}]}>
               <Image
-                source={{
-                  uri: "https://img.freepik.com/free-vector/language-learning-camp-abstract-concept-vector-illustration-summer-educational-language-program-native-english-speaker-improve-conversational-skills-training-entertainment-abstract-metaphor_335657-5914.jpg?size=626&ext=jpg&ga=GA1.1.908425002.1696943356&semt=ais",
-                }}
+                source="https://www.svgrepo.com/show/493363/conversation-person.svg"
                 alt="Learning language"
                 contentFit="contain"
                 style={{ width: "100%", aspectRatio: 1 }}
@@ -69,7 +67,7 @@ export default function Home() {
                   marginHorizontal: "auto",
                 }}
               >
-                <Button onPress={() => router.push("/(main)/register")}>
+                <Button onPress={() => router.push("/register")}>
                   {commonTranslations.getStarted[language].content}
                 </Button>
                 <Button variant="outline">

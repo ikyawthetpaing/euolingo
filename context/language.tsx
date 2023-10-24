@@ -7,12 +7,13 @@ import React, {
   useState,
 } from "react";
 
+import { LANGUAGE_ID_KEY } from "@/constants/storage-key";
 import { getLocalData, setLocalData } from "@/lib/local-storage";
-import { Language } from "@/types";
+import { SupportedLanguageCode } from "@/types";
 
 type LanguageContextType = {
-  language: Language;
-  setLanguage: Dispatch<SetStateAction<Language>>;
+  language: SupportedLanguageCode;
+  setLanguage: Dispatch<SetStateAction<SupportedLanguageCode>>;
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -27,23 +28,33 @@ export const useLanguage = () => {
   return context;
 };
 
+const validLanguages: SupportedLanguageCode[] = ["en", "mm", "jp", "th"];
+
 interface Props {
   children: React.ReactNode;
 }
 
-export const LanguageProvider: React.FC<Props> = ({ children }: Props) => {
-  const defaultLanguage: Language = "en";
-  const [language, setLanguage] = useState<Language>(defaultLanguage);
+export function LanguageProvider({ children }: Props) {
+  const defaultLanguage: SupportedLanguageCode = "en";
+  const [language, setLanguage] =
+    useState<SupportedLanguageCode>(defaultLanguage);
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
     const initializeLanguage = async () => {
       try {
-        let languageKey = await getLocalData("languageKey");
-        if (languageKey) {
-          setLanguage(languageKey as Language);
+        let languageKey = await getLocalData(LANGUAGE_ID_KEY);
+
+        // Validate if the stored languageKey is a valid language
+        if (
+          languageKey &&
+          validLanguages.includes(languageKey as SupportedLanguageCode)
+        ) {
+          setLanguage(languageKey as SupportedLanguageCode);
         } else {
-          await setLocalData("languageKey", defaultLanguage);
+          // If languageKey is not valid, set the default language to "en"
+          setLanguage(defaultLanguage);
+          await setLocalData(LANGUAGE_ID_KEY, defaultLanguage);
         }
       } catch (error) {
         console.error("Error fetching language:", error);
@@ -58,7 +69,7 @@ export const LanguageProvider: React.FC<Props> = ({ children }: Props) => {
 
   useEffect(() => {
     if (isInitialized) {
-      setLocalData("languageKey", language);
+      setLocalData(LANGUAGE_ID_KEY, language);
     }
   }, [language, isInitialized]);
 
@@ -72,4 +83,4 @@ export const LanguageProvider: React.FC<Props> = ({ children }: Props) => {
       {isInitialized && children}
     </LanguageContext.Provider>
   );
-};
+}
