@@ -10,12 +10,8 @@ export type LanguageDetails = {
   flag: string;
 };
 
-export type Translation = {
-  content: string;
-};
-
 export type Translations = {
-  [key in SupportedLanguageCode]: Translation;
+  [key in SupportedLanguageCode]: string;
 };
 
 export type CommonTranslations = {

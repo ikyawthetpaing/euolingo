@@ -6,10 +6,10 @@ import { Text, View } from "@/components/themed";
 import { Button } from "@/components/ui/button";
 import { appConfig } from "@/config/app";
 import { layouts } from "@/constants/layouts";
+import { getCommonTranslation } from "@/content/translations";
 import { useBreakpoint } from "@/context/breakpoints";
 import { useLanguage } from "@/context/language";
 import { isWeb } from "@/lib/utils";
-import { commonTranslations } from "@/translations/common";
 
 export default function Home() {
   const breakpoint = useBreakpoint();
@@ -58,7 +58,7 @@ export default function Home() {
               <Text
                 style={{ fontSize: 32, fontWeight: "800", textAlign: "center" }}
               >
-                {commonTranslations.landingPageContent[language].content}
+                {getCommonTranslation("landingPageContent", language)}
               </Text>
               <View
                 style={{
@@ -68,10 +68,10 @@ export default function Home() {
                 }}
               >
                 <Button onPress={() => router.push("/register")}>
-                  {commonTranslations.getStarted[language].content}
+                  {getCommonTranslation("getStarted", language)}
                 </Button>
                 <Button variant="outline">
-                  {commonTranslations.iAlreadyHaveAnAccount[language].content}
+                  {getCommonTranslation("iAlreadyHaveAnAccount", language)}
                 </Button>
               </View>
             </View>

@@ -9,10 +9,10 @@ import { Text, View, ViewProps } from "@/components/themed";
 import { appConfig } from "@/config/app";
 import { getLanguage, languages } from "@/config/language";
 import { layouts } from "@/constants/layouts";
+import { getCommonTranslation } from "@/content/translations";
 import { useBreakpoint } from "@/context/breakpoints";
 import { useLanguage } from "@/context/language";
 import { useTheme } from "@/context/theme";
-import { commonTranslations } from "@/translations/common";
 
 interface Props extends ViewProps {}
 
@@ -85,9 +85,10 @@ export function MainHeader({ ...props }: Props) {
             >
               {breakpoint == "sm"
                 ? getLanguage(language)?.name
-                : `${
-                    commonTranslations.siteLanguage[language].content
-                  }: ${getLanguage(language)?.name}`}
+                : `${getCommonTranslation(
+                    "siteLanguage",
+                    language
+                  )}: ${getLanguage(language)?.name}`}
             </Text>
             {open ? (
               <Icon name="chevronUp" size={24} />

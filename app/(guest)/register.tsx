@@ -7,11 +7,11 @@ import { Text, View } from "@/components/themed";
 import { appConfig } from "@/config/app";
 import { layouts } from "@/constants/layouts";
 import { courses } from "@/content/courses";
+import { getCommonTranslation } from "@/content/translations";
 import { useBreakpoint } from "@/context/breakpoints";
 import { useCourse } from "@/context/course";
 import { useLanguage } from "@/context/language";
 import { useTheme } from "@/context/theme";
-import { commonTranslations } from "@/translations/common";
 
 export default function Register() {
   const { border, accent, background } = useTheme();
@@ -42,7 +42,7 @@ export default function Register() {
             <Text
               style={{ fontSize: 32, fontWeight: "800", textAlign: "center" }}
             >
-              {commonTranslations.iWantToLearn[language].content}
+              {getCommonTranslation("iWantToLearn", language)}
             </Text>
             <View
               style={{
