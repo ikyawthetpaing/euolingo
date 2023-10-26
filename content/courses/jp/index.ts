@@ -10,15 +10,19 @@ export const japaneseCourseContent: CourseContent = {
   id: japaneseCourse.id,
   sections: [
     {
+      id: 1,
       title: "Section 1: Rookie",
       chapters: [
         {
+          id: 1,
           title: "Unit 1",
           description: "Order food, describe people",
           lessons: [
             {
+              id: 1,
               exercises: [
                 {
+                  id: 1,
                   items: [
                     {
                       question: "Which one of these is “sushi”?",
@@ -46,8 +50,10 @@ export const japaneseCourseContent: CourseContent = {
             },
 
             {
+              id: 2,
               exercises: [
                 {
+                  id: 1,
                   items: [
                     {
                       question: "Which one of these is “sushi”?",
@@ -75,8 +81,10 @@ export const japaneseCourseContent: CourseContent = {
             },
 
             {
+              id: 3,
               exercises: [
                 {
+                  id: 1,
                   items: [
                     {
                       question: "Which one of these is “sushi”?",
@@ -104,8 +112,10 @@ export const japaneseCourseContent: CourseContent = {
             },
 
             {
+              id: 4,
               exercises: [
                 {
+                  id: 1,
                   items: [
                     {
                       question: "Which one of these is “sushi”?",
@@ -133,8 +143,10 @@ export const japaneseCourseContent: CourseContent = {
             },
 
             {
+              id: 5,
               exercises: [
                 {
+                  id: 1,
                   items: [
                     {
                       question: "Which one of these is “sushi”?",
@@ -163,12 +175,15 @@ export const japaneseCourseContent: CourseContent = {
           ],
         },
         {
+          id: 2,
           title: "Unit 2",
           description: "Introduce yourself, order food and drink",
           lessons: [
             {
+              id: 1,
               exercises: [
                 {
+                  id: 1,
                   items: [
                     {
                       question: "Which one of these is “sushi”?",
@@ -196,8 +211,10 @@ export const japaneseCourseContent: CourseContent = {
             },
 
             {
+              id: 2,
               exercises: [
                 {
+                  id: 1,
                   items: [
                     {
                       question: "Which one of these is “sushi”?",
@@ -225,8 +242,10 @@ export const japaneseCourseContent: CourseContent = {
             },
 
             {
+              id: 3,
               exercises: [
                 {
+                  id: 1,
                   items: [
                     {
                       question: "Which one of these is “sushi”?",
@@ -254,8 +273,10 @@ export const japaneseCourseContent: CourseContent = {
             },
 
             {
+              id: 4,
               exercises: [
                 {
+                  id: 1,
                   items: [
                     {
                       question: "Which one of these is “sushi”?",
@@ -283,8 +304,10 @@ export const japaneseCourseContent: CourseContent = {
             },
 
             {
+              id: 5,
               exercises: [
                 {
+                  id: 1,
                   items: [
                     {
                       question: "Which one of these is “sushi”?",
@@ -314,12 +337,15 @@ export const japaneseCourseContent: CourseContent = {
         },
 
         {
+          id: 3,
           title: "Unit 3",
           description: "Talk about countries, ask for directions",
           lessons: [
             {
+              id: 1,
               exercises: [
                 {
+                  id: 1,
                   items: [
                     {
                       question: "Which one of these is “sushi”?",
@@ -347,8 +373,10 @@ export const japaneseCourseContent: CourseContent = {
             },
 
             {
+              id: 2,
               exercises: [
                 {
+                  id: 1,
                   items: [
                     {
                       question: "Which one of these is “sushi”?",
@@ -376,8 +404,10 @@ export const japaneseCourseContent: CourseContent = {
             },
 
             {
+              id: 3,
               exercises: [
                 {
+                  id: 1,
                   items: [
                     {
                       question: "Which one of these is “sushi”?",
@@ -405,8 +435,10 @@ export const japaneseCourseContent: CourseContent = {
             },
 
             {
+              id: 4,
               exercises: [
                 {
+                  id: 1,
                   items: [
                     {
                       question: "Which one of these is “sushi”?",
@@ -434,8 +466,10 @@ export const japaneseCourseContent: CourseContent = {
             },
 
             {
+              id: 5,
               exercises: [
                 {
+                  id: 1,
                   items: [
                     {
                       question: "Which one of these is “sushi”?",

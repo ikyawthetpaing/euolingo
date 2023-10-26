@@ -50,7 +50,7 @@ export function CourseRightBar({ courseId }: Props) {
           </Text>
         </View>
         <View style={{ flexDirection: "row" }}>
-          <Icon icon="bolt" size={64} />
+          <Icon name="bolt" size={64} />
           <View style={{ flex: 1 }}>
             <Text>Earn 10 XP</Text>
             <View style={{ flexDirection: "row" }}>
@@ -70,7 +70,7 @@ export function CourseRightBar({ courseId }: Props) {
                   </Text>
                 </View>
               </View>
-              <Icon icon="box" />
+              <Icon name="box" />
             </View>
           </View>
         </View>

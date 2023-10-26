@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Head from "expo-router/head";
-import { Animated, ScrollView } from "react-native";
+import { Pressable, ScrollView } from "react-native";
 
 import { Icon } from "@/components/icons";
 import { Text, View } from "@/components/themed";
@@ -12,21 +12,23 @@ import { useBreakpoint } from "@/context/breakpoints";
 import { useCourse } from "@/context/course";
 import { useTheme } from "@/context/theme";
 
-const CAMP = 32;
+const CURRENT = {
+  sectionId: 1,
+  chapterId: 1,
+  lessonId: 3,
+};
+const CAMP = 16;
+const CIRCLE_WIDTH = 64;
+const CIRCLE_RADUIS = CIRCLE_WIDTH / 2;
 
 export default function Learn() {
   const { courseId } = useCourse();
-  const {
-    mutedForeground,
-    border,
-    accent,
-    background,
-    muted,
-    primary,
-    primaryForeground,
-  } = useTheme();
+  const { mutedForeground, border, accent, muted, primary, primaryForeground } =
+    useTheme();
   const course = courseId ? getCourseContentById(courseId) : undefined;
-  const currentSection = course?.sections[0];
+  const currentSection = course?.sections.find(
+    ({ id }) => id == CURRENT.sectionId
+  );
   const [headerHeight, setHeaderHeight] = useState(0);
   const breakpoint = useBreakpoint();
   let isOdd = true;
@@ -119,42 +121,92 @@ export default function Learn() {
                     padding: layouts.padding * 0.5,
                   }}
                 >
-                  <Icon icon="notebook" />
+                  <Icon name="notebook" />
                 </Button>
               </View>
 
-              <View style={{ gap: layouts.padding * 2, alignItems: "center" }}>
+              <View
+                style={{
+                  gap: layouts.padding * 2,
+                  alignItems: "center",
+                }}
+              >
                 {chapter.lessons.map((lession, _index) => {
                   if (translateX > CAMP || translateX < -CAMP) {
                     isOdd = !isOdd;
                   }
 
                   if (_index !== 0) {
-                    isOdd ? (translateX += CAMP) : (translateX -= CAMP);
+                    isOdd
+                      ? (translateX += CIRCLE_RADUIS)
+                      : (translateX -= CIRCLE_RADUIS);
                   }
+
+                  const isCurrentChapter = CURRENT.chapterId === chapter.id;
+                  const isCurrentLesson =
+                    isCurrentChapter && CURRENT.lessonId === lession.id;
+                  const isFinished =
+                    (isCurrentChapter && lession.id < CURRENT.lessonId) ||
+                    chapter.id < CURRENT.chapterId;
+
                   return (
                     <View
                       key={_index}
                       style={{
-                        width: 64,
-                        aspectRatio: 1,
-                        borderRadius: 64,
-                        backgroundColor: _index === 0 ? primary : muted,
-                        justifyContent: "center",
-                        alignItems: "center",
-                        transform: [
-                          {
-                            translateX,
-                            rotateY: new Animated.Value(45),
-                          },
-                        ],
+                        transform: [{ translateX }],
                       }}
                     >
-                      {_index === 0 ? (
-                        <Icon icon="star" color={primaryForeground} size={24} />
-                      ) : (
-                        <Icon icon="lock" size={24} />
-                      )}
+                      <Pressable>
+                        {({ pressed }) => (
+                          <View
+                            style={{
+                              padding: layouts.padding * 0.5,
+                              borderColor: isCurrentLesson
+                                ? border
+                                : layouts.transparentColor,
+                              borderWidth: layouts.padding * 0.5,
+                              borderRadius: 9999,
+                              transform: pressed ? "scale(0.98)" : undefined,
+                            }}
+                          >
+                            <View
+                              style={{
+                                width: CIRCLE_WIDTH,
+                                aspectRatio: 1,
+                                borderRadius: CIRCLE_WIDTH,
+                                backgroundColor:
+                                  isCurrentLesson || isFinished || _index === 0
+                                    ? primary
+                                    : mutedForeground,
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}
+                            >
+                              {isCurrentLesson ? (
+                                <Icon
+                                  name="star"
+                                  size={24}
+                                  color={primaryForeground}
+                                />
+                              ) : isFinished ? (
+                                <Icon
+                                  name="check"
+                                  size={24}
+                                  color={primaryForeground}
+                                />
+                              ) : _index === 0 ? (
+                                <Icon
+                                  name="skip"
+                                  size={24}
+                                  color={primaryForeground}
+                                />
+                              ) : (
+                                <Icon name="lock" size={24} color={muted} />
+                              )}
+                            </View>
+                          </View>
+                        )}
+                      </Pressable>
                     </View>
                   );
                 })}

@@ -74,13 +74,13 @@ export function CourseLeftBar({ navItems, appName }: Props) {
                   paddingVertical: layouts.padding,
                   borderWidth: layouts.borderWidth,
                   borderRadius: layouts.padding,
-                  borderColor: isActive ? border : "rgba(0, 0, 0, 0)",
+                  borderColor: isActive ? border : layouts.transparentColor,
                   backgroundColor:
-                    pressed || hovered ? accent : "rgba(0, 0, 0, 0)",
+                    pressed || hovered ? accent : layouts.transparentColor,
                 }}
               >
                 <Icon
-                  icon={navItem.icon}
+                  name={navItem.icon}
                   color={isActive ? foreground : undefined}
                 />
                 {(breakpoint == "xl" || breakpoint == "2xl") && (

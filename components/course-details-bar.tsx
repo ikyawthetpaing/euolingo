@@ -41,7 +41,7 @@ export function CourseDetailsBar({ courseId, style, ...props }: Props) {
           gap: layouts.padding * 0.5,
         }}
       >
-        <Icon icon="fire" />
+        <Icon name="fire" />
         <Text style={{ fontWeight: "800" }}>356</Text>
       </View>
       <View
@@ -51,7 +51,7 @@ export function CourseDetailsBar({ courseId, style, ...props }: Props) {
           gap: layouts.padding * 0.5,
         }}
       >
-        <Icon icon="donut" />
+        <Icon name="donut" />
         <Text style={{ fontWeight: "800" }}>500</Text>
       </View>
       <View
@@ -61,7 +61,7 @@ export function CourseDetailsBar({ courseId, style, ...props }: Props) {
           gap: layouts.padding * 0.5,
         }}
       >
-        <Icon icon="heart" />
+        <Icon name="heart" />
         <Text style={{ fontWeight: "800" }}>5</Text>
       </View>
     </View>

@@ -90,9 +90,9 @@ export function MainHeader({ ...props }: Props) {
                   }: ${getLanguage(language)?.name}`}
             </Text>
             {open ? (
-              <Icon icon="chevronUp" size={24} />
+              <Icon name="chevronUp" size={24} />
             ) : (
-              <Icon icon="chevronDown" size={24} />
+              <Icon name="chevronDown" size={24} />
             )}
           </Pressable>
           {/* select language */}

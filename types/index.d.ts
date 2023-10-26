@@ -35,7 +35,12 @@ export type CourseConfig = {
   mobileNavItems: NavItem[];
 };
 
-// course
+export interface Course {
+  id: SupportedLanguageCode;
+  name: string;
+  image: string;
+}
+
 export type ExerciseWord = {
   id: number;
   content: string;
@@ -56,32 +61,44 @@ export interface ListeningExercise {
 
 export type CourseExerciseItem = FlashCardExercise | ListeningExercise;
 
-export interface CourseExercise {
-  items: CourseExerciseItem[];
+export interface Lesson {
+  id: number;
+  exercises: { id: number; items: CourseExerciseItem[] }[];
 }
 
-export interface CourseLesson {
-  exercises: CourseExercise[];
-}
-
-export interface CourseChapter {
+export interface Chapter {
+  id: number;
   title: string;
   description: string;
-  lessons: CourseLesson[];
+  lessons: Lesson[];
 }
 
-export interface CourseSection {
+export interface Section {
+  id: number;
   title: string;
-  chapters: CourseChapter[];
-}
-
-export interface Course {
-  id: SupportedLanguageCode;
-  name: string;
-  image: string;
+  chapters: Chapter[];
 }
 
 export interface CourseContent {
   id: SupportedLanguageCode;
-  sections: CourseSection[];
+  sections: Section[];
 }
+
+// export interface CourseContent {
+//   id: SupportedLanguageCode;
+//   sections: {
+//     id: number;
+//     title: string;
+//     chapters: {
+//       id: number;
+//       title: string;
+//       description: string;
+//       lessons: {
+//         id: number;
+//         exercises: { id: number; items: CourseExerciseItem[] }[];
+//       }[];
+//     }[];
+//   }[];
+// }
+
+// export type LessonType = typeof CourseContent["sections"]["chapters"]["lessons"];

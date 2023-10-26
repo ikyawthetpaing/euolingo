@@ -97,13 +97,13 @@ const useThemedStyles = ({
     outline: {
       borderWidth: layouts.borderWidth,
       borderColor: border,
-      backgroundColor: hovered || pressed ? accent : "rgba(0, 0, 0, 0)",
+      backgroundColor: hovered || pressed ? accent : layouts.transparentColor,
     },
     ghost: {
       backgroundColor:
         pressed || hovered
           ? changeColorOpacity(accentForeground, 0.15)
-          : "rgba(0, 0, 0, 0)",
+          : layouts.transparentColor,
     },
   });
 

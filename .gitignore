@@ -42,3 +42,4 @@ expo-env.d.ts
 
 dist/
 archive/
+.vercel
