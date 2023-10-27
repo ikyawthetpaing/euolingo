@@ -1,4 +1,4 @@
-import { usePathname } from "expo-router";
+import { router, usePathname } from "expo-router";
 import { Pressable } from "react-native";
 
 import { Icon } from "@/components/icons";
@@ -28,7 +28,7 @@ export function MobileTabsBar({ navItems }: Props) {
         const isActive =
           pathname === navItem.href || pathname.startsWith(navItem.href);
         return (
-          <Pressable key={index}>
+          <Pressable key={index} onPress={() => router.push(navItem.href)}>
             {({ pressed, hovered }) => (
               <View
                 style={{

@@ -7,5 +7,5 @@ export const STATUSBAR_HEIGHT = RNStatusBar.currentHeight || 0;
 
 export function StatusBar() {
   const { background } = useTheme();
-  return <ExpoStatusBar backgroundColor={background} />;
+  return <ExpoStatusBar backgroundColor={background} animated translucent />;
 }

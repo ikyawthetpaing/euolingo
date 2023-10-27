@@ -96,7 +96,6 @@ export function MainHeader({ ...props }: Props) {
               <Icon name="chevronDown" size={24} />
             )}
           </Pressable>
-          {/* select language */}
           <View
             style={[
               {
@@ -117,9 +116,9 @@ export function MainHeader({ ...props }: Props) {
                   },
             ]}
           >
-            {languages.map((language, index) => (
+            {languages.map((language) => (
               <Pressable
-                key={index}
+                key={language.key}
                 onPress={() => {
                   setOpen(!open);
                   setLanguage(language.key);

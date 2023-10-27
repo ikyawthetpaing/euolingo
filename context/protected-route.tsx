@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { router, usePathname, useSegments } from "expo-router";
+import { router, useSegments } from "expo-router";
 
 import { useCourse } from "@/context/course";
 
@@ -10,13 +10,15 @@ interface Props {
 export function ProtectedRouteProvider({ children }: Props) {
   const segments = useSegments();
   const { courseId } = useCourse();
-  const pathname = usePathname();
+
+  const inCourseGroup = segments[0] === "(course)";
+  const inLessonGroup = segments[0] === "(lesson)";
 
   useEffect(() => {
-    if (courseId && pathname !== "/learn") {
-      router.replace("/learn");
-    } else if (!courseId && pathname === "/learn") {
+    if (!courseId && (inCourseGroup || inLessonGroup)) {
       router.replace("/register");
+    } else if (courseId && !(inCourseGroup || inLessonGroup)) {
+      router.replace("/learn");
     }
     console.log("run case of: segments");
   }, [segments]);

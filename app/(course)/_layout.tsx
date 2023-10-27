@@ -35,17 +35,6 @@ export default function CourseLayout() {
             />
           )}
           <View style={{ flex: 1 }}>
-            {(breakpoint === "sm" || breakpoint === "md") && courseId && (
-              <CourseDetailsBar
-                courseId={courseId}
-                style={{
-                  paddingTop:
-                    breakpoint == "sm" ? layouts.padding : layouts.padding * 3,
-                  paddingHorizontal:
-                    breakpoint == "sm" ? layouts.padding : layouts.padding * 2,
-                }}
-              />
-            )}
             <View style={{ flex: 1 }}>
               <Stack screenOptions={{ headerShown: false }} />
             </View>

@@ -59,7 +59,13 @@ export type CourseExerciseItem = FlashCardExercise | ListeningExercise;
 
 export interface Lesson {
   id: number;
-  exercises: { id: number; items: CourseExerciseItem[] }[];
+  description: string;
+  exercises: {
+    id: number;
+    xp: number;
+    mode: "easy" | "medium" | "hard";
+    items: CourseExerciseItem[];
+  }[];
 }
 
 export interface Chapter {
@@ -79,22 +85,3 @@ export interface CourseContent {
   id: SupportedLanguageCode;
   sections: Section[];
 }
-
-// export interface CourseContent {
-//   id: SupportedLanguageCode;
-//   sections: {
-//     id: number;
-//     title: string;
-//     chapters: {
-//       id: number;
-//       title: string;
-//       description: string;
-//       lessons: {
-//         id: number;
-//         exercises: { id: number; items: CourseExerciseItem[] }[];
-//       }[];
-//     }[];
-//   }[];
-// }
-
-// export type LessonType = typeof CourseContent["sections"]["chapters"]["lessons"];
