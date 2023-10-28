@@ -32,24 +32,652 @@ export const japaneseCourseContent: CourseContent = {
                       type: "flashCard",
                       question: "Which one of these is “sushi”?",
                       words: [
-                        { id: 0, content: "おちゃ" },
-                        { id: 1, content: "みず" },
-                        { id: 2, content: "すし" },
-                        { id: 3, content: "ごはん" },
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
                       ],
                       correctWordId: 2,
                     } satisfies FlashCardExercise,
                     {
                       id: 1,
                       type: "flashCard",
-                      question: "What is the meaning of 'おはようございます'?",
+                      question: "Which one of these is “tea”?",
                       words: [
-                        { id: 0, content: "Good morning" },
-                        { id: 1, content: "Good night" },
-                        { id: 2, content: "Thank you" },
-                        { id: 3, content: "Hello" },
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
                       ],
                       correctWordId: 0,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 2,
+                      type: "flashCard",
+                      question: "Which one of these is “water”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 1,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 3,
+                      type: "flashCard",
+                      question: "Which one of these is “rice”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 3,
+                    } satisfies FlashCardExercise,
+                  ],
+                },
+              ],
+            },
+            {
+              id: 1,
+              description: "Talk about countries",
+              exercises: [
+                {
+                  id: 0,
+                  xp: 10,
+                  mode: "easy",
+                  items: [
+                    {
+                      id: 0,
+                      type: "flashCard",
+                      question: "Which one of these is “sushi”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 2,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 1,
+                      type: "flashCard",
+                      question: "Which one of these is “tea”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 0,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 2,
+                      type: "flashCard",
+                      question: "Which one of these is “water”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 1,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 3,
+                      type: "flashCard",
+                      question: "Which one of these is “rice”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 3,
+                    } satisfies FlashCardExercise,
+                  ],
+                },
+              ],
+            },
+            {
+              id: 2,
+              description: "Talk about countries",
+              exercises: [
+                {
+                  id: 0,
+                  xp: 10,
+                  mode: "easy",
+                  items: [
+                    {
+                      id: 0,
+                      type: "flashCard",
+                      question: "Which one of these is “sushi”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 2,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 1,
+                      type: "flashCard",
+                      question: "Which one of these is “tea”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 0,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 2,
+                      type: "flashCard",
+                      question: "Which one of these is “water”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 1,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 3,
+                      type: "flashCard",
+                      question: "Which one of these is “rice”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 3,
+                    } satisfies FlashCardExercise,
+                  ],
+                },
+              ],
+            },
+            {
+              id: 3,
+              description: "Talk about countries",
+              exercises: [
+                {
+                  id: 0,
+                  xp: 10,
+                  mode: "easy",
+                  items: [
+                    {
+                      id: 0,
+                      type: "flashCard",
+                      question: "Which one of these is “sushi”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 2,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 1,
+                      type: "flashCard",
+                      question: "Which one of these is “tea”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 0,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 2,
+                      type: "flashCard",
+                      question: "Which one of these is “water”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 1,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 3,
+                      type: "flashCard",
+                      question: "Which one of these is “rice”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 3,
+                    } satisfies FlashCardExercise,
+                  ],
+                },
+              ],
+            },
+            {
+              id: 4,
+              description: "Talk about countries",
+              exercises: [
+                {
+                  id: 0,
+                  xp: 10,
+                  mode: "easy",
+                  items: [
+                    {
+                      id: 0,
+                      type: "flashCard",
+                      question: "Which one of these is “sushi”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 2,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 1,
+                      type: "flashCard",
+                      question: "Which one of these is “tea”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 0,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 2,
+                      type: "flashCard",
+                      question: "Which one of these is “water”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 1,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 3,
+                      type: "flashCard",
+                      question: "Which one of these is “rice”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                        },
+                      ],
+                      correctWordId: 3,
                     } satisfies FlashCardExercise,
                   ],
                 },

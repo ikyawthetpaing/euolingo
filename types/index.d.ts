@@ -37,19 +37,23 @@ export type Course = {
   image: string;
 };
 
-export type ExerciseWord = {
+export interface ExerciseWord {
   id: number;
   content: string;
-};
+}
 
 export interface ExerciseType {
   id: number;
   type: "flashCard" | "listening";
 }
 
+export interface FlashCardExerciseWord extends ExerciseWord {
+  image: string;
+}
+
 export interface FlashCardExercise extends ExerciseType {
   question: string;
-  words: ExerciseWord[];
+  words: FlashCardExerciseWord[];
   correctWordId: number;
 }
 

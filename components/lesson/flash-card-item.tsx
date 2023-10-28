@@ -1,13 +1,17 @@
 import { useEffect, useMemo, useState } from "react";
-import { Pressable, useWindowDimensions } from "react-native";
+import { Image } from "expo-image";
+import { Pressable, ScrollView, useWindowDimensions } from "react-native";
 
 import { Text, View } from "@/components/themed";
 import { Button } from "@/components/ui/button";
+import { colors } from "@/constants/colors";
 import { layouts } from "@/constants/layouts";
 import { useBreakpoint } from "@/context/breakpoints";
 import { useTheme } from "@/context/theme";
 import { shuffleArray } from "@/lib/utils";
 import { FlashCardExercise } from "@/types";
+
+import { Icon } from "../icons";
 
 interface Props {
   exercise: FlashCardExercise;
@@ -19,67 +23,115 @@ export function FlashCardItem({ exercise, onResult, onContinue }: Props) {
   const shuffled = useMemo(() => shuffleArray(exercise.words), [exercise]);
 
   const breakpoint = useBreakpoint();
-  const { mutedForeground, muted, foreground } = useTheme();
+  const {
+    mutedForeground,
+    muted,
+    foreground,
+    border,
+    destructive,
+    destructiveForeground,
+    background,
+    sucess,
+    sucessForeground,
+  } = useTheme();
   const window = useWindowDimensions();
 
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  const [sucess, setSucess] = useState<boolean | null>(null);
+  const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
 
   useEffect(() => {
-    if (sucess !== null) {
-      onResult(sucess);
+    if (isSuccess !== null) {
+      onResult(isSuccess);
     }
-  }, [sucess]);
+  }, [isSuccess]);
 
   const reset = () => {
     setSelectedId(null);
-    setSucess(null);
+    setIsSuccess(null);
   };
 
   const onCheck = () => {
     if (selectedId !== null) {
-      exercise.correctWordId === selectedId
-        ? setSucess(true)
-        : setSucess(false);
+      setIsSuccess(exercise.correctWordId === selectedId);
     }
   };
 
   return (
-    <View style={{ justifyContent: "space-between", flex: 1 }}>
-      <View
+    <View
+      style={{ justifyContent: "space-between", flex: 1, position: "relative" }}
+    >
+      <ScrollView
         style={{
           marginHorizontal: "auto",
           maxWidth: "100%",
-          gap: layouts.padding * 2,
+          paddingHorizontal: layouts.padding,
         }}
       >
-        <Text style={{ fontSize: 24, fontWeight: "bold" }}>
-          {exercise.question}
-        </Text>
         <View
           style={{
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: layouts.padding,
+            gap: layouts.padding * 2,
           }}
         >
-          {shuffled.map((word, index) => (
-            <Pressable key={index} onPress={() => setSelectedId(word.id)}>
-              <View
-                style={{
-                  borderWidth: layouts.borderWidth,
-                  borderColor: selectedId === word.id ? foreground : muted,
-                  width:
-                    breakpoint === "sm"
-                      ? window.width / 2 - layouts.padding * 2
-                      : 150,
-                  aspectRatio: 1,
-                  borderRadius: layouts.padding,
-                  justifyContent: "center",
-                  alignItems: "center",
+          <Text style={{ fontSize: 24, fontWeight: "bold" }}>
+            {exercise.question}
+          </Text>
+          <View
+            style={{
+              flexDirection: "row",
+              flexWrap: "wrap",
+              gap: layouts.padding,
+            }}
+          >
+            {shuffled.map((word, index) => (
+              <Pressable
+                key={index}
+                onPress={() => {
+                  if (isSuccess === null) {
+                    setSelectedId(word.id);
+                  }
                 }}
+                style={[
+                  {
+                    borderWidth: layouts.borderWidth,
+                    borderColor: selectedId === word.id ? foreground : muted,
+                    width:
+                      breakpoint === "sm"
+                        ? window.width / 2 - layouts.padding * 1.5
+                        : 150,
+                    borderRadius: layouts.padding,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: layouts.padding,
+                    gap: layouts.padding,
+                  },
+                  selectedId === word.id &&
+                    isSuccess === true && {
+                      borderColor: sucessForeground,
+                      backgroundColor: sucess,
+                    },
+                  selectedId === word.id &&
+                    isSuccess === false && {
+                      borderColor: destructiveForeground,
+                      backgroundColor: destructive,
+                    },
+                ]}
               >
+                <View
+                  style={{
+                    padding: layouts.padding,
+                    width: "100%",
+                    aspectRatio: 1,
+                    backgroundColor: colors.transparent,
+                  }}
+                >
+                  <Image
+                    source={word.image}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  />
+                </View>
                 <Text
                   style={{
                     fontSize: 24,
@@ -90,25 +142,121 @@ export function FlashCardItem({ exercise, onResult, onContinue }: Props) {
                 >
                   {word.content}
                 </Text>
-              </View>
-            </Pressable>
-          ))}
+              </Pressable>
+            ))}
+          </View>
         </View>
+      </ScrollView>
+      <View
+        style={{
+          paddingVertical: layouts.padding,
+          borderTopWidth: layouts.borderWidth,
+          borderTopColor:
+            isSuccess === null
+              ? colors.transparent
+              : isSuccess === true
+              ? sucessForeground
+              : destructiveForeground,
+          paddingHorizontal: layouts.padding,
+          backgroundColor:
+            isSuccess === null
+              ? background
+              : isSuccess === true
+              ? sucess
+              : destructive,
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+        }}
+      >
+        {isSuccess !== null ? (
+          <View
+            style={{
+              gap: layouts.padding,
+              backgroundColor: colors.transparent,
+            }}
+          >
+            <View
+              style={{
+                backgroundColor: colors.transparent,
+                gap: layouts.padding,
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: layouts.padding,
+                  backgroundColor: colors.transparent,
+                }}
+              >
+                <Icon
+                  name={isSuccess ? "checkCircle" : "closeCircle"}
+                  color={isSuccess ? sucessForeground : destructiveForeground}
+                />
+                <Text
+                  style={{
+                    fontSize: 18,
+                    fontWeight: "bold",
+                    color: isSuccess ? sucessForeground : destructiveForeground,
+                  }}
+                >
+                  {isSuccess ? "Excellect" : "Incorrect"}
+                </Text>
+              </View>
+              {isSuccess === false && (
+                <View
+                  style={{
+                    backgroundColor: colors.transparent,
+                    flexDirection: "row",
+                    gap: layouts.padding,
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      fontWeight: "bold",
+                      color: destructiveForeground,
+                    }}
+                  >
+                    Correct Answer:
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      color: destructiveForeground,
+                    }}
+                  >
+                    {
+                      exercise.words.find(
+                        ({ id }) => id === exercise.correctWordId
+                      )?.content
+                    }
+                  </Text>
+                </View>
+              )}
+            </View>
+            <Button
+              onPress={() => {
+                reset();
+                onContinue();
+              }}
+              viewStyle={{
+                backgroundColor: isSuccess
+                  ? sucessForeground
+                  : destructiveForeground,
+              }}
+            >
+              Continue
+            </Button>
+          </View>
+        ) : (
+          <Button disabled={selectedId === null} onPress={onCheck}>
+            Check
+          </Button>
+        )}
       </View>
-      {sucess !== null ? (
-        <Button
-          onPress={() => {
-            reset();
-            onContinue();
-          }}
-        >
-          Continue
-        </Button>
-      ) : (
-        <Button disabled={selectedId === null} onPress={onCheck}>
-          Check
-        </Button>
-      )}
     </View>
   );
 }

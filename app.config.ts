@@ -5,7 +5,7 @@ import { ExpoConfig } from "expo/config";
 
 const config: ExpoConfig = {
   name: "Euolingo",
-  description: "The free, fun, and effective way to learn a language!",
+  description: "The free, fun, and effective way to learn a language.",
   slug: "euolingo",
   version: "1.0.0",
   orientation: "portrait",
@@ -15,7 +15,7 @@ const config: ExpoConfig = {
   splash: {
     image: "./assets/images/splash.png",
     resizeMode: "contain",
-    backgroundColor: "#ffffff",
+    backgroundColor: "#171717",
   },
   assetBundlePatterns: ["**/*"],
   ios: {
@@ -24,7 +24,7 @@ const config: ExpoConfig = {
   android: {
     adaptiveIcon: {
       foregroundImage: "./assets/images/adaptive-icon.png",
-      backgroundColor: "#ffffff",
+      backgroundColor: "#171717",
     },
   },
   web: {
