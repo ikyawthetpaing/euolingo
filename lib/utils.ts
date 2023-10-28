@@ -27,3 +27,17 @@ export function changeColorOpacity(rgbColor: string, opacity: number): string {
     throw new Error("Invalid RGB color format");
   }
 }
+
+export function shuffleArray<T>(array: T[]): T[] {
+  // Create a copy of the original array to avoid modifying the input array
+  const shuffledArray = array.slice();
+
+  // Fisher-Yates shuffle algorithm
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    // Swap elements at i and j indices
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+
+  return shuffledArray;
+}

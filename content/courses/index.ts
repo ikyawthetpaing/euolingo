@@ -11,3 +11,23 @@ export function getCourseById(_id: SupportedLanguageCode) {
 export function getCourseContentById(_id: SupportedLanguageCode) {
   return courseContents.find(({ id }) => id === _id);
 }
+export function getExerxise({
+  chapterId,
+  courseId,
+  exerciseId,
+  lessonId,
+  sectionId,
+}: {
+  courseId: SupportedLanguageCode;
+  sectionId: number;
+  chapterId: number;
+  lessonId: number;
+  exerciseId: number;
+}) {
+  const exercise = getCourseContentById(courseId)
+    ?.sections.find(({ id }) => id === sectionId)
+    ?.chapters.find(({ id }) => id === chapterId)
+    ?.lessons.find(({ id }) => id === lessonId)
+    ?.exercises.find(({ id }) => id === exerciseId);
+  return exercise || null;
+}

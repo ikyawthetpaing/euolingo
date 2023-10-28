@@ -51,3 +51,7 @@ export const themeColors: ThemeColors = {
     border: "rgb(38, 38, 38)",
   },
 };
+
+export const colors = {
+  transparent: "rgba(0, 0, 0, 0)",
+};

@@ -31,24 +31,29 @@ export type CourseConfig = {
   mobileNavItems: NavItem[];
 };
 
-export interface Course {
+export type Course = {
   id: SupportedLanguageCode;
   name: string;
   image: string;
-}
+};
 
 export type ExerciseWord = {
   id: number;
   content: string;
 };
 
-export interface FlashCardExercise {
+export interface ExerciseType {
+  id: number;
+  type: "flashCard" | "listening";
+}
+
+export interface FlashCardExercise extends ExerciseType {
   question: string;
   words: ExerciseWord[];
   correctWordId: number;
 }
 
-export interface ListeningExercise {
+export interface ListeningExercise extends ExerciseType {
   audio: string;
   sentence: string;
   availableAnswers: ExerciseWord[];
@@ -64,26 +69,26 @@ export type CourseExercise = {
   items: CourseExerciseItem[];
 };
 
-export interface CourseLesson {
+export type CourseLesson = {
   id: number;
   description: string;
   exercises: CourseExercise[];
-}
+};
 
-export interface CourseChapter {
+export type CourseChapter = {
   id: number;
   title: string;
   description: string;
   lessons: CourseLesson[];
-}
+};
 
-export interface CourseSection {
+export type CourseSection = {
   id: number;
   title: string;
   chapters: CourseChapter[];
-}
+};
 
-export interface CourseContent {
+export type CourseContent = {
   id: SupportedLanguageCode;
   sections: CourseSection[];
-}
+};
