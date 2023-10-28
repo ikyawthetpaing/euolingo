@@ -11,22 +11,22 @@ import { LANGUAGE_ID_KEY } from "@/constants/storage-key";
 import { getLocalData, setLocalData } from "@/lib/local-storage";
 import { SupportedLanguageCode } from "@/types";
 
-type LanguageContextType = {
-  language: SupportedLanguageCode;
-  setLanguage: Dispatch<SetStateAction<SupportedLanguageCode>>;
+type LanguageCodeContextType = {
+  languageCode: SupportedLanguageCode;
+  setLanguageCode: Dispatch<SetStateAction<SupportedLanguageCode>>;
 };
 
-const LanguageContext = createContext<LanguageContextType | undefined>(
+const LanguageCodeContext = createContext<LanguageCodeContextType | undefined>(
   undefined
 );
 
-export const useLanguage = () => {
-  const context = useContext(LanguageContext);
+export function useLanguageCode() {
+  const context = useContext(LanguageCodeContext);
   if (!context) {
     throw new Error("useLanguage must be used within a LanguageProvider");
   }
   return context;
-};
+}
 
 const validLanguages: SupportedLanguageCode[] = ["en", "mm", "jp", "th"];
 
@@ -34,7 +34,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export function LanguageProvider({ children }: Props) {
+export function LanguageCodeProvider({ children }: Props) {
   const defaultLanguage: SupportedLanguageCode = "en";
   const [language, setLanguage] =
     useState<SupportedLanguageCode>(defaultLanguage);
@@ -73,14 +73,14 @@ export function LanguageProvider({ children }: Props) {
     }
   }, [language, isInitialized]);
 
-  const languageContextValue: LanguageContextType = {
-    language,
-    setLanguage,
+  const languageContextValue: LanguageCodeContextType = {
+    languageCode: language,
+    setLanguageCode: setLanguage,
   };
 
   return (
-    <LanguageContext.Provider value={languageContextValue}>
+    <LanguageCodeContext.Provider value={languageContextValue}>
       {isInitialized && children}
-    </LanguageContext.Provider>
+    </LanguageCodeContext.Provider>
   );
 }

@@ -8,12 +8,12 @@ import { appConfig } from "@/config/app";
 import { layouts } from "@/constants/layouts";
 import { getCommonTranslation } from "@/content/translations";
 import { useBreakpoint } from "@/context/breakpoints";
-import { useLanguage } from "@/context/language";
+import { useLanguageCode } from "@/context/language";
 import { isWeb } from "@/lib/utils";
 
 export default function Home() {
   const breakpoint = useBreakpoint();
-  const { language } = useLanguage();
+  const { languageCode: language } = useLanguageCode();
 
   return (
     <>

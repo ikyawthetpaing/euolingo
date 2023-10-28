@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Image } from "expo-image";
 import { Link } from "expo-router";
-import { LayoutRectangle, Pressable } from "react-native";
+import { Pressable } from "react-native";
+import Popover from "react-native-popover-view/dist/Popover";
+import { Placement } from "react-native-popover-view/dist/Types";
 
 import { Icon } from "@/components/icons";
 import { STATUSBAR_HEIGHT } from "@/components/status-bar";
@@ -11,29 +13,30 @@ import { getLanguage, languages } from "@/config/language";
 import { layouts } from "@/constants/layouts";
 import { getCommonTranslation } from "@/content/translations";
 import { useBreakpoint } from "@/context/breakpoints";
-import { useLanguage } from "@/context/language";
+import { useLanguageCode } from "@/context/language";
 import { useTheme } from "@/context/theme";
 
 interface Props extends ViewProps {}
 
-export function MainHeader({ ...props }: Props) {
-  const { border, mutedForeground, background, accent } = useTheme();
+export function MainHeader({ style, ...props }: Props) {
+  const { border, mutedForeground, accent, background } = useTheme();
   const breakpoint = useBreakpoint();
-  const [layout, setLayout] = useState<LayoutRectangle | null>(null);
-  const [open, setOpen] = useState(false);
-  const { language, setLanguage } = useLanguage();
-
+  const { languageCode, setLanguageCode } = useLanguageCode();
+  const [isVisiable, setIsVisiable] = useState(false);
   return (
     <View
-      style={{
-        borderBottomWidth: layouts.borderWidth,
-        borderBottomColor: border,
-        position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 9999,
-      }}
+      style={[
+        {
+          borderBottomWidth: layouts.borderWidth,
+          borderBottomColor: border,
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 9999,
+        },
+        style,
+      ]}
       {...props}
     >
       <View
@@ -64,95 +67,94 @@ export function MainHeader({ ...props }: Props) {
               {appConfig.name.toLowerCase()}
             </Text>
           </Link>
-          <Pressable
-            style={{
-              flexDirection: "row",
-              gap: 6,
-              alignItems: "center",
+          <Popover
+            placement={Placement.BOTTOM}
+            isVisible={isVisiable}
+            onRequestClose={() => setIsVisiable(false)}
+            popoverStyle={{
+              borderRadius: layouts.padding,
+              backgroundColor: border,
             }}
-            onLayout={(e) => {
-              setLayout(e.nativeEvent.layout);
+            backgroundStyle={{
+              backgroundColor: background,
+              opacity: 0.5,
             }}
-            onPress={() => setOpen(!open)}
+            from={
+              <Pressable
+                style={{
+                  flexDirection: "row",
+                  gap: 6,
+                  alignItems: "center",
+                }}
+                onPress={() => setIsVisiable(!isVisiable)}
+              >
+                <Text
+                  style={{
+                    fontSize: 15,
+                    fontWeight: "800",
+                    color: mutedForeground,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {breakpoint == "sm"
+                    ? getLanguage(languageCode)?.name
+                    : `${getCommonTranslation(
+                        "siteLanguage",
+                        languageCode
+                      )}: ${getLanguage(languageCode)?.name}`}
+                </Text>
+                <Icon name="chevronDown" size={24} />
+              </Pressable>
+            }
           >
-            <Text
+            <View
               style={{
-                fontSize: 15,
-                fontWeight: "800",
-                color: mutedForeground,
-                textTransform: "uppercase",
-              }}
-            >
-              {breakpoint == "sm"
-                ? getLanguage(language)?.name
-                : `${getCommonTranslation(
-                    "siteLanguage",
-                    language
-                  )}: ${getLanguage(language)?.name}`}
-            </Text>
-            {open ? (
-              <Icon name="chevronUp" size={24} />
-            ) : (
-              <Icon name="chevronDown" size={24} />
-            )}
-          </Pressable>
-          <View
-            style={[
-              {
-                position: "absolute",
                 borderWidth: layouts.borderWidth,
                 borderRadius: layouts.padding,
                 borderColor: border,
-                top: layout ? layout.height + layout.y : 0,
                 overflow: "hidden",
-                display: open ? "flex" : "none",
-                minWidth: 150,
-              },
-              breakpoint === "sm"
-                ? { right: layouts.padding * 2 }
-                : {
-                    left: layout ? layout.x : 0,
-                    width: layout ? layout.width : 0,
-                  },
-            ]}
-          >
-            {languages.map((language) => (
-              <Pressable
-                key={language.key}
-                onPress={() => {
-                  setOpen(!open);
-                  setLanguage(language.key);
-                }}
-              >
-                {({ hovered, pressed }) => (
-                  <View
-                    style={{
-                      padding: layouts.padding,
-                      flexDirection: "row",
-                      gap: layouts.padding,
-                      alignItems: "center",
-                      backgroundColor: hovered || pressed ? accent : background,
-                    }}
-                  >
+                minWidth: 300,
+              }}
+            >
+              {languages.map((language) => (
+                <Pressable
+                  key={language.key}
+                  onPress={() => {
+                    setIsVisiable(false);
+                    setLanguageCode(language.key);
+                  }}
+                >
+                  {({ hovered, pressed }) => (
                     <View
                       style={{
-                        width: 32,
-                        aspectRatio: 4 / 3,
-                        overflow: "hidden",
-                        borderRadius: 6,
+                        padding: layouts.padding,
+                        flexDirection: "row",
+                        gap: layouts.padding,
+                        alignItems: "center",
+                        backgroundColor:
+                          hovered || pressed ? accent : background,
                       }}
                     >
-                      <Image
-                        source={language.flag}
-                        style={{ width: "100%", height: "100%" }}
-                      />
+                      <View
+                        style={{
+                          width: 32,
+                          aspectRatio: 4 / 3,
+                          overflow: "hidden",
+                          borderRadius: 6,
+                        }}
+                      >
+                        <Image
+                          source={language.flag}
+                          style={{ width: "100%", height: "100%" }}
+                        />
+                      </View>
+                      <Text>{language.name}</Text>
                     </View>
-                    <Text>{language.name}</Text>
-                  </View>
-                )}
-              </Pressable>
-            ))}
-          </View>
+                  )}
+                </Pressable>
+              ))}
+            </View>
+          </Popover>
         </View>
       </View>
     </View>

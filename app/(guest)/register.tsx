@@ -10,13 +10,13 @@ import { courses } from "@/content/courses";
 import { getCommonTranslation } from "@/content/translations";
 import { useBreakpoint } from "@/context/breakpoints";
 import { useCourse } from "@/context/course";
-import { useLanguage } from "@/context/language";
+import { useLanguageCode } from "@/context/language";
 import { useTheme } from "@/context/theme";
 
 export default function Register() {
   const { border, accent, background } = useTheme();
   const breakpoint = useBreakpoint();
-  const { language } = useLanguage();
+  const { languageCode: language } = useLanguageCode();
   const { setCourseId } = useCourse();
 
   return (

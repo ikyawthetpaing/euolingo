@@ -57,31 +57,33 @@ export interface ListeningExercise {
 
 export type CourseExerciseItem = FlashCardExercise | ListeningExercise;
 
-export interface Lesson {
+export type CourseExercise = {
+  id: number;
+  xp: number;
+  mode: "easy" | "medium" | "hard";
+  items: CourseExerciseItem[];
+};
+
+export interface CourseLesson {
   id: number;
   description: string;
-  exercises: {
-    id: number;
-    xp: number;
-    mode: "easy" | "medium" | "hard";
-    items: CourseExerciseItem[];
-  }[];
+  exercises: CourseExercise[];
 }
 
-export interface Chapter {
+export interface CourseChapter {
   id: number;
   title: string;
   description: string;
-  lessons: Lesson[];
+  lessons: CourseLesson[];
 }
 
-export interface Section {
+export interface CourseSection {
   id: number;
   title: string;
-  chapters: Chapter[];
+  chapters: CourseChapter[];
 }
 
 export interface CourseContent {
   id: SupportedLanguageCode;
-  sections: Section[];
+  sections: CourseSection[];
 }
