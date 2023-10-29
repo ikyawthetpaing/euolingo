@@ -1,10 +1,11 @@
 import { Image } from "expo-image";
 import { router } from "expo-router";
-import Head from "expo-router/head";
 import { Pressable } from "react-native";
 
+import { Container } from "@/components/container";
+import { Metadata } from "@/components/metadata";
 import { Text, View } from "@/components/themed";
-import { appConfig } from "@/config/app";
+import { colors } from "@/constants/colors";
 import { layouts } from "@/constants/layouts";
 import { courses } from "@/content/courses";
 import { getCommonTranslation } from "@/content/translations";
@@ -14,26 +15,20 @@ import { useLanguageCode } from "@/context/language";
 import { useTheme } from "@/context/theme";
 
 export default function Register() {
-  const { border, accent, background } = useTheme();
+  const { border, accent, background, mutedForeground } = useTheme();
   const breakpoint = useBreakpoint();
   const { languageCode: language } = useLanguageCode();
   const { setCourseId } = useCourse();
 
   return (
     <>
-      <Head>
-        <title>Register - {appConfig.name}</title>
-        <meta name="description" content="Register now!" />
-      </Head>
+      <Metadata title="Register" />
       <View style={{ flex: 1 }}>
-        <View
+        <Container
           style={{
-            maxWidth: 1024,
-            marginHorizontal: "auto",
-            width: "100%",
             padding:
               breakpoint === "sm" ? layouts.padding : layouts.padding * 2,
-            flex: 1,
+            paddingTop: 0,
           }}
         >
           <View
@@ -83,6 +78,7 @@ export default function Register() {
                             aspectRatio: 4 / 3,
                             overflow: "hidden",
                             borderRadius: 6,
+                            backgroundColor: colors.transparent,
                           }}
                         >
                           <Image
@@ -90,14 +86,22 @@ export default function Register() {
                             style={{ width: "100%", height: "100%" }}
                           />
                         </View>
-                        <Text style={{ fontSize: 18 }}>{course.name}</Text>
+                        <Text
+                          style={{
+                            fontSize: 18,
+                            fontWeight: "bold",
+                            color: mutedForeground,
+                          }}
+                        >
+                          {course.name}
+                        </Text>
                       </View>
                     )}
                   </Pressable>
                 ))}
             </View>
           </View>
-        </View>
+        </Container>
       </View>
     </>
   );

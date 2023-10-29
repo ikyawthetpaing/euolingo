@@ -15,6 +15,9 @@ import { useBreakpoint } from "@/context/breakpoints";
 import { useLanguageCode } from "@/context/language";
 import { useTheme } from "@/context/theme";
 
+import { SelectLanguage } from "../select-language";
+import { STATUSBAR_HEIGHT } from "../status-bar";
+
 interface Props extends ViewProps {}
 
 export function MainHeader({ style, ...props }: Props) {
@@ -28,11 +31,6 @@ export function MainHeader({ style, ...props }: Props) {
         {
           borderBottomWidth: layouts.borderWidth,
           borderBottomColor: border,
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 9999,
         },
         style,
       ]}
@@ -47,12 +45,10 @@ export function MainHeader({ style, ...props }: Props) {
       >
         <View
           style={{
-            paddingHorizontal: layouts.padding * 2,
-            paddingVertical:
+            padding:
               breakpoint === "sm" ? layouts.padding : layouts.padding * 2,
             flexDirection: "row",
             justifyContent: "space-between",
-            alignItems: "center",
           }}
         >
           <Link href="/">
@@ -65,7 +61,8 @@ export function MainHeader({ style, ...props }: Props) {
               {appConfig.name.toLowerCase()}
             </Text>
           </Link>
-          <Popover
+          <SelectLanguage />
+          {/* <Popover
             placement={Placement.BOTTOM}
             isVisible={isVisiable}
             onRequestClose={() => setIsVisiable(false)}
@@ -152,7 +149,7 @@ export function MainHeader({ style, ...props }: Props) {
                 </Pressable>
               ))}
             </View>
-          </Popover>
+          </Popover> */}
         </View>
       </View>
     </View>

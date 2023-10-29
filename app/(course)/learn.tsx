@@ -15,7 +15,7 @@ import { useTheme } from "@/context/theme";
 import { CourseChapter } from "@/types";
 
 const CAMP = 16;
-const CIRCLE_RADUIS = 50;
+const CIRCLE_RADUIS = 48;
 
 export default function Learn() {
   const { courseId, courseProgress } = useCourse();
@@ -26,7 +26,7 @@ export default function Learn() {
   let isOdd = true;
   let translateX = 0;
 
-  const course = courseId ? getCourseContentById(courseId) : undefined;
+  const course = courseId ? getCourseContentById(courseId) : null;
   const currentSection = course?.sections.find(
     ({ id }) => id == courseProgress.currentSectionId
   );
@@ -109,8 +109,8 @@ export default function Learn() {
 
           return (
             <LessonItem
-              index={index}
               key={index}
+              index={index}
               circleRadius={CIRCLE_RADUIS}
               currentExercise={currentExercise}
               isCurrentLesson={isCurrentLesson}

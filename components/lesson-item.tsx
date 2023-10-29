@@ -2,15 +2,12 @@ import { useState } from "react";
 import { router } from "expo-router";
 import { Pressable, PressableProps } from "react-native";
 import Popover from "react-native-popover-view/dist/Popover";
-import ProgressCircle from "react-native-progress-circle";
 
 import { Icon } from "@/components/icons";
 import { Text, View } from "@/components/themed";
 import { Button } from "@/components/ui/button";
-import { colors } from "@/constants/colors";
 import { layouts } from "@/constants/layouts";
 import { useTheme } from "@/context/theme";
-import { calculatePrecentage } from "@/lib/utils";
 import { CourseExercise } from "@/types";
 
 interface Props extends PressableProps {
@@ -60,40 +57,37 @@ export function LessonItem({
       }}
       from={
         <Pressable onPress={openPopover} {...props}>
-          <ProgressCircle
-            percent={calculatePrecentage(currentExercise.id + 1, totalExercise)}
-            radius={circleRadius}
-            borderWidth={layouts.padding / 2}
-            bgColor={background}
-            color={isCurrentLesson ? foreground : colors.transparent}
-            shadowColor={isCurrentLesson ? muted : colors.transparent}
+          <View
+            style={{
+              padding: layouts.padding / 2,
+              width: circleRadius * 2,
+              aspectRatio: 1,
+            }}
           >
-            <View style={{ padding: layouts.padding / 2 }}>
-              <View
-                style={{
-                  width: "100%",
-                  aspectRatio: 1,
-                  borderRadius: 9999,
-                  backgroundColor:
-                    isCurrentLesson || isFinishedLesson || index === 0
-                      ? primary
-                      : mutedForeground,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                {isCurrentLesson ? (
-                  <Icon name="star" size={24} color={primaryForeground} />
-                ) : isFinishedLesson ? (
-                  <Icon name="check" size={24} color={primaryForeground} />
-                ) : index === 0 ? (
-                  <Icon name="skip" size={24} color={primaryForeground} />
-                ) : (
-                  <Icon name="lock" size={24} color={muted} />
-                )}
-              </View>
+            <View
+              style={{
+                width: "100%",
+                aspectRatio: 1,
+                borderRadius: 9999,
+                backgroundColor:
+                  isCurrentLesson || isFinishedLesson || index === 0
+                    ? primary
+                    : mutedForeground,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {isCurrentLesson ? (
+                <Icon name="star" size={24} color={primaryForeground} />
+              ) : isFinishedLesson ? (
+                <Icon name="check" size={24} color={primaryForeground} />
+              ) : index === 0 ? (
+                <Icon name="skip" size={24} color={primaryForeground} />
+              ) : (
+                <Icon name="lock" size={24} color={muted} />
+              )}
             </View>
-          </ProgressCircle>
+          </View>
         </Pressable>
       }
     >

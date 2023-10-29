@@ -1,4 +1,5 @@
-import { Stack } from "expo-router";
+import { useEffect } from "react";
+import { router, Stack } from "expo-router";
 
 import { Container } from "@/components/container";
 import { CourseLeftBar } from "@/components/layouts/course-left-bar";
@@ -14,6 +15,8 @@ import { useCourse } from "@/context/course";
 export default function CourseLayout() {
   const { courseId } = useCourse();
   const breakpoint = useBreakpoint();
+
+  if (!courseId) return null;
 
   return (
     <Shell>
@@ -35,8 +38,7 @@ export default function CourseLayout() {
           </View>
           {(breakpoint === "lg" ||
             breakpoint === "xl" ||
-            breakpoint === "2xl") &&
-            courseId && <CourseRightBar courseId={courseId} />}
+            breakpoint === "2xl") && <CourseRightBar courseId={courseId} />}
         </View>
       </Container>
     </Shell>

@@ -1,4 +1,9 @@
-import { CourseConfig } from "@/types";
+import { NavItem } from "@/types";
+
+type CourseConfig = {
+  sidebarNavItems: NavItem[];
+  mobileNavItems: NavItem[];
+};
 
 export const courseConfig: CourseConfig = {
   sidebarNavItems: [

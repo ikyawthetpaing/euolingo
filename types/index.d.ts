@@ -4,10 +4,8 @@ import { Icons } from "@/components/icons";
 
 export type SupportedLanguageCode = "en" | "mm" | "jp" | "th";
 
-export type LanguageDetails = {
-  key: SupportedLanguageCode;
-  name: string;
-  flag: string;
+export type Languages = {
+  [key in SupportedLanguageCode]: { name: string; flag: string };
 };
 
 export type Translations = {
@@ -24,11 +22,6 @@ export type NavItem = {
   icon: keyof typeof Icons;
   label: string;
   href: Href;
-};
-
-export type CourseConfig = {
-  sidebarNavItems: NavItem[];
-  mobileNavItems: NavItem[];
 };
 
 export type Course = {

@@ -2,7 +2,7 @@ import { CommonTranslations } from "@/types";
 
 export const commonTranslations = {
   siteLanguage: {
-    en: "Site language",
+    en: "Language",
     mm: "ဘာသာစကား",
     jp: "言語",
     th: "ภาษา",
