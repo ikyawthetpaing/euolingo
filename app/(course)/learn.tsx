@@ -7,7 +7,6 @@ import { LessonItem } from "@/components/lesson-item";
 import { Metadata } from "@/components/metadata";
 import { Text, View } from "@/components/themed";
 import { Button } from "@/components/ui/button";
-import { CURRENT } from "@/constants/dev";
 import { layouts } from "@/constants/layouts";
 import { getCourseContentById } from "@/content/courses";
 import { useBreakpoint } from "@/context/breakpoints";
@@ -16,11 +15,10 @@ import { useTheme } from "@/context/theme";
 import { CourseChapter } from "@/types";
 
 const CAMP = 16;
-const CIRCLE_WIDTH = 64;
-const CIRCLE_RADUIS = CIRCLE_WIDTH / 2;
+const CIRCLE_RADUIS = 50;
 
 export default function Learn() {
-  const { courseId } = useCourse();
+  const { courseId, courseProgress } = useCourse();
   const { mutedForeground, border, accent } = useTheme();
   const [headerHeight, setHeaderHeight] = useState(0);
   const breakpoint = useBreakpoint();
@@ -30,7 +28,7 @@ export default function Learn() {
 
   const course = courseId ? getCourseContentById(courseId) : undefined;
   const currentSection = course?.sections.find(
-    ({ id }) => id == CURRENT.sectionId
+    ({ id }) => id == courseProgress.currentSectionId
   );
   if (!currentSection) return null;
 
@@ -97,14 +95,15 @@ export default function Learn() {
               : (translateX -= CIRCLE_RADUIS);
           }
 
-          const isCurrentChapter = CURRENT.chapterId === chapter.id;
+          const isCurrentChapter =
+            courseProgress.currentChapterId === chapter.id;
           const isCurrentLesson =
-            isCurrentChapter && CURRENT.lessonId === lession.id;
+            isCurrentChapter && courseProgress.currentLessonId === lession.id;
           const isFinishedLesson =
-            (isCurrentChapter && lession.id < CURRENT.lessonId) ||
-            chapter.id < CURRENT.chapterId;
+            (isCurrentChapter && lession.id < courseProgress.currentLessonId) ||
+            chapter.id < courseProgress.currentChapterId;
           const currentExercise = lession.exercises.find(
-            ({ id }) => id === CURRENT.exerciseId
+            ({ id }) => id === courseProgress.currentExerciseId
           );
           if (!currentExercise) return null;
 
@@ -112,7 +111,7 @@ export default function Learn() {
             <LessonItem
               index={index}
               key={index}
-              circleWidth={CIRCLE_WIDTH}
+              circleRadius={CIRCLE_RADUIS}
               currentExercise={currentExercise}
               isCurrentLesson={isCurrentLesson}
               isFinishedLesson={isFinishedLesson}

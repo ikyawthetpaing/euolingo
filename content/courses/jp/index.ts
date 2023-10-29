@@ -1,3 +1,4 @@
+import { courseJp } from "@/assets/audios/course";
 import { Course, CourseContent, FlashCardExercise } from "@/types";
 
 export const japaneseCourse: Course = {
@@ -20,7 +21,7 @@ export const japaneseCourseContent: CourseContent = {
           lessons: [
             {
               id: 0,
-              description: "Talk about countries",
+              description: "Order food",
               exercises: [
                 {
                   id: 0,
@@ -36,23 +37,27 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 2,
@@ -66,23 +71,27 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 0,
@@ -96,23 +105,27 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 1,
@@ -126,23 +139,456 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
+                        },
+                      ],
+                      correctWordId: 3,
+                    } satisfies FlashCardExercise,
+                  ],
+                },
+                {
+                  id: 1,
+                  xp: 10,
+                  mode: "easy",
+                  items: [
+                    {
+                      id: 0,
+                      type: "flashCard",
+                      question: "Which one of these is “sushi”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
+                        },
+                      ],
+                      correctWordId: 2,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 1,
+                      type: "flashCard",
+                      question: "Which one of these is “tea”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
+                        },
+                      ],
+                      correctWordId: 0,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 2,
+                      type: "flashCard",
+                      question: "Which one of these is “water”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
+                        },
+                      ],
+                      correctWordId: 1,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 3,
+                      type: "flashCard",
+                      question: "Which one of these is “rice”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
+                        },
+                      ],
+                      correctWordId: 3,
+                    } satisfies FlashCardExercise,
+                  ],
+                },
+                {
+                  id: 2,
+                  xp: 10,
+                  mode: "easy",
+                  items: [
+                    {
+                      id: 0,
+                      type: "flashCard",
+                      question: "Which one of these is “sushi”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
+                        },
+                      ],
+                      correctWordId: 2,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 1,
+                      type: "flashCard",
+                      question: "Which one of these is “tea”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
+                        },
+                      ],
+                      correctWordId: 0,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 2,
+                      type: "flashCard",
+                      question: "Which one of these is “water”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
+                        },
+                      ],
+                      correctWordId: 1,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 3,
+                      type: "flashCard",
+                      question: "Which one of these is “rice”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
+                        },
+                      ],
+                      correctWordId: 3,
+                    } satisfies FlashCardExercise,
+                  ],
+                },
+                {
+                  id: 3,
+                  xp: 10,
+                  mode: "easy",
+                  items: [
+                    {
+                      id: 0,
+                      type: "flashCard",
+                      question: "Which one of these is “sushi”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
+                        },
+                      ],
+                      correctWordId: 2,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 1,
+                      type: "flashCard",
+                      question: "Which one of these is “tea”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
+                        },
+                      ],
+                      correctWordId: 0,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 2,
+                      type: "flashCard",
+                      question: "Which one of these is “water”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
+                        },
+                      ],
+                      correctWordId: 1,
+                    } satisfies FlashCardExercise,
+                    {
+                      id: 3,
+                      type: "flashCard",
+                      question: "Which one of these is “rice”?",
+                      words: [
+                        {
+                          id: 0,
+                          content: "おちゃ",
+                          image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
+                        },
+                        {
+                          id: 1,
+                          content: "みず",
+                          image:
+                            "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
+                        },
+                        {
+                          id: 2,
+                          content: "すし",
+                          image:
+                            "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
+                        },
+                        {
+                          id: 3,
+                          content: "ごはん",
+                          image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 3,
@@ -153,7 +599,7 @@ export const japaneseCourseContent: CourseContent = {
             },
             {
               id: 1,
-              description: "Talk about countries",
+              description: "Order food",
               exercises: [
                 {
                   id: 0,
@@ -169,23 +615,27 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 2,
@@ -199,23 +649,27 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 0,
@@ -229,23 +683,27 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 1,
@@ -259,37 +717,35 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 3,
                     } satisfies FlashCardExercise,
                   ],
                 },
-              ],
-            },
-            {
-              id: 2,
-              description: "Talk about countries",
-              exercises: [
                 {
-                  id: 0,
+                  id: 1,
                   xp: 10,
                   mode: "easy",
                   items: [
@@ -302,23 +758,27 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 2,
@@ -332,23 +792,27 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 0,
@@ -362,23 +826,27 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 1,
@@ -392,37 +860,35 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 3,
                     } satisfies FlashCardExercise,
                   ],
                 },
-              ],
-            },
-            {
-              id: 3,
-              description: "Talk about countries",
-              exercises: [
                 {
-                  id: 0,
+                  id: 2,
                   xp: 10,
                   mode: "easy",
                   items: [
@@ -435,23 +901,27 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 2,
@@ -465,23 +935,27 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 0,
@@ -495,23 +969,27 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 1,
@@ -525,37 +1003,35 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 3,
                     } satisfies FlashCardExercise,
                   ],
                 },
-              ],
-            },
-            {
-              id: 4,
-              description: "Talk about countries",
-              exercises: [
                 {
-                  id: 0,
+                  id: 3,
                   xp: 10,
                   mode: "easy",
                   items: [
@@ -568,23 +1044,27 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 2,
@@ -598,23 +1078,27 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 0,
@@ -628,23 +1112,27 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 1,
@@ -658,23 +1146,27 @@ export const japaneseCourseContent: CourseContent = {
                           id: 0,
                           content: "おちゃ",
                           image: "https://www.svgrepo.com/show/475139/tea.svg",
+                          audio: courseJp.tea,
                         },
                         {
                           id: 1,
                           content: "みず",
                           image:
                             "https://www.svgrepo.com/show/218416/water.svg",
+                          audio: courseJp.water,
                         },
                         {
                           id: 2,
                           content: "すし",
                           image:
                             "https://www.svgrepo.com/show/402766/sushi.svg",
+                          audio: courseJp.sushi,
                         },
                         {
                           id: 3,
                           content: "ごはん",
                           image: "https://www.svgrepo.com/show/505200/rice.svg",
+                          audio: courseJp.rice,
                         },
                       ],
                       correctWordId: 3,

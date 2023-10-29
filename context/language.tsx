@@ -7,7 +7,7 @@ import React, {
   useState,
 } from "react";
 
-import { LANGUAGE_ID_KEY } from "@/constants/storage-key";
+import { LANGUAGE_ID_STORAGE_KEY } from "@/constants/storage-key";
 import { getLocalData, setLocalData } from "@/lib/local-storage";
 import { SupportedLanguageCode } from "@/types";
 
@@ -43,7 +43,7 @@ export function LanguageCodeProvider({ children }: Props) {
   useEffect(() => {
     const initializeLanguage = async () => {
       try {
-        let languageKey = await getLocalData(LANGUAGE_ID_KEY);
+        let languageKey = await getLocalData(LANGUAGE_ID_STORAGE_KEY);
 
         // Validate if the stored languageKey is a valid language
         if (
@@ -54,7 +54,7 @@ export function LanguageCodeProvider({ children }: Props) {
         } else {
           // If languageKey is not valid, set the default language to "en"
           setLanguage(defaultLanguage);
-          await setLocalData(LANGUAGE_ID_KEY, defaultLanguage);
+          await setLocalData(LANGUAGE_ID_STORAGE_KEY, defaultLanguage);
         }
       } catch (error) {
         console.error("Error fetching language:", error);
@@ -69,7 +69,7 @@ export function LanguageCodeProvider({ children }: Props) {
 
   useEffect(() => {
     if (isInitialized) {
-      setLocalData(LANGUAGE_ID_KEY, language);
+      setLocalData(LANGUAGE_ID_STORAGE_KEY, language);
     }
   }, [language, isInitialized]);
 

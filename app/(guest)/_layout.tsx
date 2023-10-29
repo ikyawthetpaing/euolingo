@@ -9,9 +9,9 @@ export default function MainLayout() {
   const [headerHeight, setHeaderHeight] = useState(0);
   return (
     <Shell>
-      <MainHeader
+      {/* <MainHeader
         onLayout={(e) => setHeaderHeight(e.nativeEvent.layout.height)}
-      />
+      /> */}
       <Container style={{ paddingTop: headerHeight }}>
         <Stack screenOptions={{ headerShown: false }} />
       </Container>

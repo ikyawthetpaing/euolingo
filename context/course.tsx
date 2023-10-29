@@ -7,13 +7,18 @@ import React, {
   useState,
 } from "react";
 
-import { CURRENT_COURSE_ID_KEY } from "@/constants/storage-key";
+import { COURSE_PROGRESS_DEFAULT } from "@/constants/default";
+import {
+  COURSE_PROGRESS_STORAGE_KEY,
+  CURRENT_COURSE_ID_STORAGE_KEY,
+} from "@/constants/storage-key";
 import { getLocalData, setLocalData } from "@/lib/local-storage";
-import { SupportedLanguageCode } from "@/types";
+import { CourseProgress, SupportedLanguageCode } from "@/types";
 
 type CourseContextType = {
   courseId: SupportedLanguageCode | null;
   setCourseId: Dispatch<SetStateAction<SupportedLanguageCode | null>>;
+  courseProgress: CourseProgress;
 };
 
 const CourseContext = createContext<CourseContextType | undefined>(undefined);
@@ -32,14 +37,41 @@ interface Props {
 
 export function CourseProvider({ children }: Props) {
   const [courseId, setCourseId] = useState<SupportedLanguageCode | null>(null);
+  const [courseProgress, setCourseProgress] = useState<CourseProgress>(
+    COURSE_PROGRESS_DEFAULT
+  );
   const [isInitialized, setIsInitialized] = useState(false);
+
+  const handleCourseProgress = async (courseId: SupportedLanguageCode) => {
+    const courseProgressKey = COURSE_PROGRESS_STORAGE_KEY(courseId);
+    const storedCourseProgress = await getLocalData(courseProgressKey);
+
+    if (storedCourseProgress) {
+      setCourseProgress(JSON.parse(storedCourseProgress) as CourseProgress);
+    } else {
+      setCourseProgress(COURSE_PROGRESS_DEFAULT);
+      await setLocalData(
+        courseProgressKey,
+        JSON.stringify(COURSE_PROGRESS_DEFAULT)
+      );
+    }
+  };
 
   useEffect(() => {
     const initializeCourse = async () => {
       try {
-        let course_id = await getLocalData(CURRENT_COURSE_ID_KEY);
-        // Handle the case where course_id is undefined or null
-        setCourseId((course_id as SupportedLanguageCode) || null);
+        let storedCourseId = await getLocalData(CURRENT_COURSE_ID_STORAGE_KEY);
+
+        // Handle the case where course_id is not in supported courses
+        // const validCourseId = supportedCourses.includes(
+        //   storedCourseId as SupportedLanguageCode
+        // );
+
+        if (storedCourseId) {
+          const COURSE_ID = storedCourseId as SupportedLanguageCode;
+          handleCourseProgress(COURSE_ID);
+          setCourseId(COURSE_ID);
+        }
       } catch (error) {
         console.error("Error fetching course ID:", error);
         // Handle the error gracefully, for example, set courseId to a default value
@@ -54,13 +86,15 @@ export function CourseProvider({ children }: Props) {
 
   useEffect(() => {
     if (isInitialized && courseId !== null) {
-      setLocalData(CURRENT_COURSE_ID_KEY, courseId);
+      setLocalData(CURRENT_COURSE_ID_STORAGE_KEY, courseId);
+      handleCourseProgress(courseId);
     }
   }, [courseId, isInitialized]);
 
   const courseContextValue: CourseContextType = {
     courseId,
     setCourseId,
+    courseProgress,
   };
 
   return (

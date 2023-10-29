@@ -40,6 +40,7 @@ export type Course = {
 export interface ExerciseWord {
   id: number;
   content: string;
+  audio: AVPlaybackSource;
 }
 
 export interface ExerciseType {
@@ -100,4 +101,11 @@ export type CourseSection = {
 export type CourseContent = {
   id: SupportedLanguageCode;
   sections: CourseSection[];
+};
+
+export type CourseProgress = {
+  currentSectionId: number;
+  currentChapterId: number;
+  currentLessonId: number;
+  currentExerciseId: number;
 };

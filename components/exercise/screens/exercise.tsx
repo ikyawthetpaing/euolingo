@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Pressable } from "react-native";
 
-import { soundEffects } from "@/assets/sound-effects";
+import { sound } from "@/assets/audios/sound";
 import { Container } from "@/components/container";
 import ExerciseItem from "@/components/exercise/exercise-item";
 import LessonOutroScreen from "@/components/exercise/screens/exercise-outro";
@@ -29,12 +29,8 @@ export default function ExerciseScreen({ exercise }: Props) {
   const { accent, foreground } = useTheme();
   const breakpoint = useBreakpoint();
 
-  const { playSound: playCorrectSound } = useAudio({
-    source: soundEffects.correctAnswer,
-  });
-  const { playSound: playWrongSound } = useAudio({
-    source: soundEffects.wrongAnswer,
-  });
+  const { playSound: playCorrectSound } = useAudio({ source: sound.correct });
+  const { playSound: playWrongSound } = useAudio({ source: sound.wrong });
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [finishedCount, setFinishedCount] = useState(0);
