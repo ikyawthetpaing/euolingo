@@ -1,13 +1,12 @@
 import { useState } from "react";
-import Head from "expo-router/head";
 import { ScrollView } from "react-native";
 
 import { CourseDetailsBar } from "@/components/course-details-bar";
 import { Icon } from "@/components/icons";
 import { LessonItem } from "@/components/lesson-item";
+import { Metadata } from "@/components/metadata";
 import { Text, View } from "@/components/themed";
 import { Button } from "@/components/ui/button";
-import { appConfig } from "@/config/app";
 import { CURRENT } from "@/constants/dev";
 import { layouts } from "@/constants/layouts";
 import { getCourseContentById } from "@/content/courses";
@@ -129,10 +128,10 @@ export default function Learn() {
 
   return (
     <>
-      <Head>
-        <title>Learn - {appConfig.name}</title>
-        <meta name="description" content="Register now!" />
-      </Head>
+      <Metadata
+        title="Learn"
+        description="Learn a new lesson every day to keep your streak."
+      />
       <View style={{ flex: 1, position: "relative" }}>
         <View
           style={{

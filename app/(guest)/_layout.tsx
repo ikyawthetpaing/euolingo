@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { Stack } from "expo-router";
 
+import { Container } from "@/components/container";
 import { MainHeader } from "@/components/layouts/main-header";
-import { View } from "@/components/themed";
+import { Shell } from "@/components/shell";
 
 export default function MainLayout() {
   const [headerHeight, setHeaderHeight] = useState(0);
   return (
-    <View style={{ flex: 1 }}>
+    <Shell>
       <MainHeader
         onLayout={(e) => setHeaderHeight(e.nativeEvent.layout.height)}
       />
-      <View style={{ flex: 1, paddingTop: headerHeight }}>
+      <Container style={{ paddingTop: headerHeight }}>
         <Stack screenOptions={{ headerShown: false }} />
-      </View>
-    </View>
+      </Container>
+    </Shell>
   );
 }

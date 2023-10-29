@@ -18,7 +18,7 @@ export type CommonTranslations = {
   [key: string]: Translations;
 };
 
-export type Icon = keyof typeof Icons;
+export type IconName = keyof typeof Icons;
 
 export type NavItem = {
   icon: keyof typeof Icons;
@@ -62,6 +62,11 @@ export interface ListeningExercise extends ExerciseType {
   sentence: string;
   availableAnswers: ExerciseWord[];
   correctOrderIds: number[];
+}
+
+export interface ExerciseItemProps {
+  onResult: (sucess: boolean) => void;
+  onContinue: () => void;
 }
 
 export type CourseExerciseItem = FlashCardExercise | ListeningExercise;

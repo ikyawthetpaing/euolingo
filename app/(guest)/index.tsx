@@ -1,7 +1,9 @@
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import Head from "expo-router/head";
+import { ScrollView } from "react-native";
 
+import { Container } from "@/components/container";
 import { Text, View } from "@/components/themed";
 import { Button } from "@/components/ui/button";
 import { appConfig } from "@/config/app";
@@ -21,24 +23,28 @@ export default function Home() {
         <title>{appConfig.title}</title>
         <meta name="description" content={appConfig.description} />
       </Head>
-      <View style={{ flex: 1 }}>
-        <View
-          style={{
-            maxWidth: 1024,
-            marginHorizontal: "auto",
-            width: "100%",
-            padding: layouts.padding * 2,
-            flex: 1,
+      <Container>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
             justifyContent: "center",
+            flex: 1,
+            padding: layouts.padding,
           }}
         >
           <View
             style={{
+              flex: 1,
               flexDirection: breakpoint === "sm" ? "column" : "row",
               gap: layouts.padding * 2,
             }}
           >
-            <View style={[isWeb() ? { flex: 1, flexShrink: 0 } : {}]}>
+            <View
+              style={[
+                { justifyContent: "center" },
+                isWeb() ? { flex: 1, flexShrink: 0 } : {},
+              ]}
+            >
               <Image
                 source="https://www.svgrepo.com/show/493363/conversation-person.svg"
                 alt="Learning language"
@@ -56,7 +62,11 @@ export default function Home() {
               ]}
             >
               <Text
-                style={{ fontSize: 32, fontWeight: "800", textAlign: "center" }}
+                style={{
+                  fontSize: 32,
+                  fontWeight: "800",
+                  textAlign: "center",
+                }}
               >
                 {getCommonTranslation("landingPageContent", language)}
               </Text>
@@ -76,8 +86,8 @@ export default function Home() {
               </View>
             </View>
           </View>
-        </View>
-      </View>
+        </ScrollView>
+      </Container>
     </>
   );
 }

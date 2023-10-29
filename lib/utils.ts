@@ -41,3 +41,7 @@ export function shuffleArray<T>(array: T[]): T[] {
 
   return shuffledArray;
 }
+
+export function calculatePrecentage(part: number, whole: number) {
+  return (part / whole) * 100;
+}

@@ -4,6 +4,7 @@ import {
   StyleProp,
   StyleSheet,
   Text,
+  TextStyle,
   View,
   ViewStyle,
 } from "react-native";
@@ -18,12 +19,14 @@ export interface ButtonProps extends PressableProps {
   children?: React.ReactNode;
   variant?: Variant;
   viewStyle?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
 }
 
 export function Button({
   children,
   variant = "default",
   viewStyle,
+  textStyle,
   ...props
 }: ButtonProps) {
   const { foreground, primaryForeground, mutedForeground, accentForeground } =
@@ -55,6 +58,7 @@ export function Button({
                 },
                 variant === "default" && { color: primaryForeground },
                 props.disabled && { color: mutedForeground },
+                textStyle,
               ]}
             >
               {children}

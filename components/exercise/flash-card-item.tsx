@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Image } from "expo-image";
 import { Pressable, ScrollView, useWindowDimensions } from "react-native";
 
+import { Icon } from "@/components/icons";
 import { Text, View } from "@/components/themed";
 import { Button } from "@/components/ui/button";
 import { colors } from "@/constants/colors";
@@ -9,14 +10,10 @@ import { layouts } from "@/constants/layouts";
 import { useBreakpoint } from "@/context/breakpoints";
 import { useTheme } from "@/context/theme";
 import { shuffleArray } from "@/lib/utils";
-import { FlashCardExercise } from "@/types";
+import { ExerciseItemProps, FlashCardExercise } from "@/types";
 
-import { Icon } from "../icons";
-
-interface Props {
+interface Props extends ExerciseItemProps {
   exercise: FlashCardExercise;
-  onResult: (sucess: boolean) => void;
-  onContinue: () => void;
 }
 
 export function FlashCardItem({ exercise, onResult, onContinue }: Props) {
@@ -27,7 +24,6 @@ export function FlashCardItem({ exercise, onResult, onContinue }: Props) {
     mutedForeground,
     muted,
     foreground,
-    border,
     destructive,
     destructiveForeground,
     background,
@@ -60,8 +56,9 @@ export function FlashCardItem({ exercise, onResult, onContinue }: Props) {
     <View
       style={{ justifyContent: "space-between", flex: 1, position: "relative" }}
     >
-      <ScrollView
+      <View
         style={{
+          flex: 1,
           marginHorizontal: "auto",
           maxWidth: "100%",
           paddingHorizontal: layouts.padding,
@@ -69,84 +66,98 @@ export function FlashCardItem({ exercise, onResult, onContinue }: Props) {
       >
         <View
           style={{
+            flex: 1,
             gap: layouts.padding * 2,
           }}
         >
           <Text style={{ fontSize: 24, fontWeight: "bold" }}>
             {exercise.question}
           </Text>
-          <View
-            style={{
-              flexDirection: "row",
-              flexWrap: "wrap",
-              gap: layouts.padding,
-            }}
-          >
-            {shuffled.map((word, index) => (
-              <Pressable
-                key={index}
-                onPress={() => {
-                  if (isSuccess === null) {
-                    setSelectedId(word.id);
-                  }
-                }}
-                style={[
-                  {
-                    borderWidth: layouts.borderWidth,
-                    borderColor: selectedId === word.id ? foreground : muted,
-                    width:
-                      breakpoint === "sm"
-                        ? window.width / 2 - layouts.padding * 1.5
-                        : 150,
-                    borderRadius: layouts.padding,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    padding: layouts.padding,
-                    gap: layouts.padding,
-                  },
-                  selectedId === word.id &&
-                    isSuccess === true && {
-                      borderColor: sucessForeground,
-                      backgroundColor: sucess,
-                    },
-                  selectedId === word.id &&
-                    isSuccess === false && {
-                      borderColor: destructiveForeground,
-                      backgroundColor: destructive,
-                    },
-                ]}
-              >
-                <View
-                  style={{
-                    padding: layouts.padding,
-                    width: "100%",
-                    aspectRatio: 1,
-                    backgroundColor: colors.transparent,
+          <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                flexWrap: "wrap",
+                gap: layouts.padding,
+              }}
+            >
+              {shuffled.map((word, index) => (
+                <Pressable
+                  key={index}
+                  onPress={() => {
+                    if (isSuccess === null) {
+                      setSelectedId(word.id);
+                    }
                   }}
+                  style={[
+                    {
+                      borderWidth: layouts.borderWidth,
+                      borderColor: selectedId === word.id ? foreground : muted,
+                      width:
+                        breakpoint === "sm"
+                          ? window.width / 2 - layouts.padding * 1.5
+                          : 150,
+                      borderRadius: layouts.padding,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      padding: layouts.padding,
+                      gap: layouts.padding,
+                    },
+                    selectedId === word.id &&
+                      isSuccess === true && {
+                        borderColor: sucessForeground,
+                        backgroundColor: sucess,
+                      },
+                    selectedId === word.id &&
+                      isSuccess === false && {
+                        borderColor: destructiveForeground,
+                        backgroundColor: destructive,
+                      },
+                  ]}
                 >
-                  <Image
-                    source={word.image}
+                  <View
                     style={{
+                      padding: layouts.padding,
                       width: "100%",
-                      height: "100%",
+                      aspectRatio: 1,
+                      backgroundColor: colors.transparent,
                     }}
-                  />
-                </View>
-                <Text
-                  style={{
-                    fontSize: 24,
-                    fontWeight: "bold",
-                    color:
-                      selectedId === word.id ? foreground : mutedForeground,
-                  }}
-                >
-                  {word.content}
-                </Text>
-              </Pressable>
-            ))}
-          </View>
+                  >
+                    <Image
+                      source={word.image}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    />
+                  </View>
+                  <Text
+                    style={[
+                      {
+                        fontSize: 24,
+                        fontWeight: "bold",
+                        color:
+                          selectedId === word.id ? foreground : mutedForeground,
+                      },
+                      selectedId === word.id &&
+                        isSuccess === true && {
+                          color: sucessForeground,
+                        },
+                      selectedId === word.id &&
+                        isSuccess === false && {
+                          color: destructiveForeground,
+                        },
+                    ]}
+                  >
+                    {word.content}
+                  </Text>
+                </Pressable>
+              ))}
+            </View>
+          </ScrollView>
         </View>
-      </ScrollView>
+      </View>
       <View
         style={{
           paddingVertical: layouts.padding,
@@ -164,10 +175,6 @@ export function FlashCardItem({ exercise, onResult, onContinue }: Props) {
               : isSuccess === true
               ? sucess
               : destructive,
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
         }}
       >
         {isSuccess !== null ? (
@@ -246,6 +253,9 @@ export function FlashCardItem({ exercise, onResult, onContinue }: Props) {
                 backgroundColor: isSuccess
                   ? sucessForeground
                   : destructiveForeground,
+              }}
+              textStyle={{
+                color: isSuccess ? sucess : destructive,
               }}
             >
               Continue

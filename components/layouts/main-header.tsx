@@ -6,7 +6,6 @@ import Popover from "react-native-popover-view/dist/Popover";
 import { Placement } from "react-native-popover-view/dist/Types";
 
 import { Icon } from "@/components/icons";
-import { STATUSBAR_HEIGHT } from "@/components/status-bar";
 import { Text, View, ViewProps } from "@/components/themed";
 import { appConfig } from "@/config/app";
 import { getLanguage, languages } from "@/config/language";
@@ -44,7 +43,6 @@ export function MainHeader({ style, ...props }: Props) {
           maxWidth: 1024,
           marginHorizontal: "auto",
           width: "100%",
-          paddingTop: STATUSBAR_HEIGHT,
         }}
       >
         <View

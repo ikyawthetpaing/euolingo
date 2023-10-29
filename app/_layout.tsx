@@ -3,7 +3,6 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 
-import { StatusBar } from "@/components/status-bar";
 import { BreakpointsProvider } from "@/context/breakpoints";
 import { CourseProvider } from "@/context/course";
 import { LanguageCodeProvider } from "@/context/language";
@@ -17,7 +16,7 @@ export {
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "(guest)",
+  initialRouteName: "(main)",
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -44,22 +43,17 @@ export default function RootLayout() {
     return null;
   }
 
-  return <RootLayoutNav />;
-}
-
-function RootLayoutNav() {
   return (
-    <BreakpointsProvider>
-      <ThemeProvider>
+    <ThemeProvider>
+      <BreakpointsProvider>
         <LanguageCodeProvider>
           <CourseProvider>
             <ProtectedRouteProvider>
               <Stack screenOptions={{ headerShown: false }} />
-              <StatusBar />
             </ProtectedRouteProvider>
           </CourseProvider>
         </LanguageCodeProvider>
-      </ThemeProvider>
-    </BreakpointsProvider>
+      </BreakpointsProvider>
+    </ThemeProvider>
   );
 }
