@@ -1,15 +1,16 @@
-import { Image } from "expo-image";
-
 import { Icon } from "@/components/icons";
 import { Text, View, ViewProps } from "@/components/themed";
 import { layouts } from "@/constants/layouts";
-import { getCourseById } from "@/content/courses";
+import { useLanguageCode } from "@/context/language";
 import { SupportedLanguageCode } from "@/types";
+
+import { SelectCourse } from "./select-course";
 
 interface Props extends ViewProps {
   courseId: SupportedLanguageCode;
 }
 export function CourseDetailsBar({ courseId, style, ...props }: Props) {
+  const { languageCode } = useLanguageCode();
   return (
     <View
       style={[
@@ -22,18 +23,7 @@ export function CourseDetailsBar({ courseId, style, ...props }: Props) {
       ]}
       {...props}
     >
-      <View
-        style={{
-          width: 32,
-          aspectRatio: 1,
-          overflow: "hidden",
-        }}
-      >
-        <Image
-          source={getCourseById(courseId)?.image}
-          style={{ width: "100%", height: "100%" }}
-        />
-      </View>
+      <SelectCourse excludes={[languageCode]} />
       <View
         style={{
           flexDirection: "row",

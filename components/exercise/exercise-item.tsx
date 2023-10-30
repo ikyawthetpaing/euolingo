@@ -1,14 +1,14 @@
 import { Text } from "@/components/themed";
 import {
-  CourseExerciseItem,
   ExerciseItemProps,
+  ExerciseItem as ExerciseItemType,
   FlashCardExercise,
-} from "@/types";
+} from "@/types/course";
 
 import { FlashCardItem } from "./flash-card-item";
 
 interface Props extends ExerciseItemProps {
-  exerciseItem: CourseExerciseItem;
+  exerciseItem: ExerciseItemType;
 }
 
 export default function ExerciseItem({

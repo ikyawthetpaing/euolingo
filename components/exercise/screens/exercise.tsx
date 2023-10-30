@@ -1,22 +1,26 @@
-import React, { useMemo, useState } from "react";
-import { Pressable } from "react-native";
+import React, { useCallback, useMemo, useState } from "react";
+import { router } from "expo-router";
 
 import { sound } from "@/assets/audios/sound";
 import { Container } from "@/components/container";
 import ExerciseItem from "@/components/exercise/exercise-item";
 import LessonOutroScreen from "@/components/exercise/screens/exercise-outro";
 import { Icon } from "@/components/icons";
+import { SelectLanguage } from "@/components/select-language";
 import { Shell } from "@/components/shell";
 import { Text, View } from "@/components/themed";
+import { Button } from "@/components/ui/button";
+import { Dialog } from "@/components/ui/dialog";
 import { layouts } from "@/constants/layouts";
 import { useBreakpoint } from "@/context/breakpoints";
+import { useCourse } from "@/context/course";
 import { useTheme } from "@/context/theme";
 import { useAudio } from "@/hooks/audio";
 import { calculatePrecentage, shuffleArray } from "@/lib/utils";
-import { CourseExercise } from "@/types";
+import { Exercise } from "@/types/course";
 
 interface Props {
-  exercise: CourseExercise;
+  exercise: Exercise;
 }
 
 export default function ExerciseScreen({ exercise }: Props) {
@@ -26,7 +30,8 @@ export default function ExerciseScreen({ exercise }: Props) {
   );
   const totalExerciseItems = shuffledExerciseItems.length;
 
-  const { accent, foreground } = useTheme();
+  const { courseId } = useCourse();
+  const { accent, foreground, mutedForeground } = useTheme();
   const breakpoint = useBreakpoint();
 
   const { playSound: playCorrectSound } = useAudio({ source: sound.correct });
@@ -55,6 +60,8 @@ export default function ExerciseScreen({ exercise }: Props) {
     }
   };
 
+  if (!courseId) return null;
+
   if (isFinished) {
     return <LessonOutroScreen xp={exercise.xp} duration="2:30" target="80%" />;
   }
@@ -71,9 +78,30 @@ export default function ExerciseScreen({ exercise }: Props) {
               breakpoint === "sm" ? layouts.padding : layouts.padding * 2,
           }}
         >
-          <Pressable>
-            <Icon name="setting" />
-          </Pressable>
+          <Dialog
+            trigger={<Icon name="setting" />}
+            title="Settings"
+            contentContainerStyle={{ gap: layouts.padding }}
+          >
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  color: mutedForeground,
+                  textTransform: "uppercase",
+                }}
+              >
+                Language:
+              </Text>
+              <SelectLanguage excludes={[courseId]} />
+            </View>
+            <Button variant="outline" onPress={() => router.push("/learn")}>
+              End Session
+            </Button>
+          </Dialog>
           <View style={{ flex: 1, justifyContent: "center" }}>
             <View
               style={{

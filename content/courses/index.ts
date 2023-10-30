@@ -1,16 +1,20 @@
-import { Course, CourseContent, SupportedLanguageCode } from "@/types";
+// import { Course, CourseContent, SupportedLanguageCode } from "@/types";
 
-import { japaneseCourse, japaneseCourseContent } from "./jp";
+import { SupportedLanguageCode } from "@/types";
 
-export const courses: Course[] = [japaneseCourse];
-export const courseContents: CourseContent[] = [japaneseCourseContent];
+import { courseContent } from "./data";
 
-export function getCourseById(_id: SupportedLanguageCode) {
-  return courses.find(({ id }) => id === _id);
-}
-export function getCourseContentById(_id: SupportedLanguageCode) {
-  return courseContents.find(({ id }) => id === _id);
-}
+// import { japaneseCourse, japaneseCourseContent } from "./jp";
+
+// export const courses: Course[] = [japaneseCourse];
+// export const courseContents: CourseContent[] = [japaneseCourseContent];
+
+// export function getCourseById(_id: SupportedLanguageCode) {
+//   return courses.find(({ id }) => id === _id);
+// }
+// export function getCourseContentById(_id: SupportedLanguageCode) {
+//   return courseContents.find(({ id }) => id === _id);
+// }
 export function getExerxise({
   chapterId,
   courseId,
@@ -24,8 +28,8 @@ export function getExerxise({
   lessonId: number;
   exerciseId: number;
 }) {
-  const exercise = getCourseContentById(courseId)
-    ?.sections.find(({ id }) => id === sectionId)
+  const exercise = courseContent.sections
+    .find(({ id }) => id === sectionId)
     ?.chapters.find(({ id }) => id === chapterId)
     ?.lessons.find(({ id }) => id === lessonId)
     ?.exercises.find(({ id }) => id === exerciseId);

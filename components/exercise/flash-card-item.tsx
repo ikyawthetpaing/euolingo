@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { colors } from "@/constants/colors";
 import { layouts } from "@/constants/layouts";
 import { useBreakpoint } from "@/context/breakpoints";
+import { useCourse } from "@/context/course";
+import { useLanguageCode } from "@/context/language";
 import { useTheme } from "@/context/theme";
 import { useAudio } from "@/hooks/audio";
 import { shuffleArray } from "@/lib/utils";
@@ -20,7 +22,7 @@ import {
   ExerciseItemProps,
   FlashCardExercise,
   FlashCardExerciseWord,
-} from "@/types";
+} from "@/types/course";
 
 interface Props extends ExerciseItemProps {
   exercise: FlashCardExercise;
@@ -29,6 +31,7 @@ interface Props extends ExerciseItemProps {
 export function FlashCardItem({ exercise, onResult, onContinue }: Props) {
   const shuffled = useMemo(() => shuffleArray(exercise.words), [exercise]);
 
+  const { languageCode } = useLanguageCode();
   const breakpoint = useBreakpoint();
   const {
     mutedForeground,
@@ -81,7 +84,7 @@ export function FlashCardItem({ exercise, onResult, onContinue }: Props) {
           }}
         >
           <Text style={{ fontSize: 24, fontWeight: "bold" }}>
-            {exercise.question}
+            {exercise.question[languageCode]}
           </Text>
           <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
             <View
@@ -100,76 +103,6 @@ export function FlashCardItem({ exercise, onResult, onContinue }: Props) {
                   selectedId={selectedId}
                   setSelectedId={setSelectedId}
                 />
-                // <Pressable
-                //   key={index}
-                //   onPress={() => {
-                //     if (isSuccess === null) {
-                //       setSelectedId(word.id);
-                //     }
-                //   }}
-                //   style={[
-                //     {
-                //       borderWidth: layouts.borderWidth,
-                //       borderColor: selectedId === word.id ? foreground : muted,
-                //       width:
-                //         breakpoint === "sm"
-                //           ? window.width / 2 - layouts.padding * 1.5
-                //           : 150,
-                //       borderRadius: layouts.padding,
-                //       justifyContent: "center",
-                //       alignItems: "center",
-                //       padding: layouts.padding,
-                //       gap: layouts.padding,
-                //     },
-                //     selectedId === word.id &&
-                //       isSuccess === true && {
-                //         borderColor: sucessForeground,
-                //         backgroundColor: sucess,
-                //       },
-                //     selectedId === word.id &&
-                //       isSuccess === false && {
-                //         borderColor: destructiveForeground,
-                //         backgroundColor: destructive,
-                //       },
-                //   ]}
-                // >
-                //   <View
-                //     style={{
-                //       padding: layouts.padding,
-                //       width: "100%",
-                //       aspectRatio: 1,
-                //       backgroundColor: colors.transparent,
-                //     }}
-                //   >
-                //     <Image
-                //       source={word.image}
-                //       style={{
-                //         width: "100%",
-                //         height: "100%",
-                //       }}
-                //     />
-                //   </View>
-                //   <Text
-                //     style={[
-                //       {
-                //         fontSize: 24,
-                //         fontWeight: "bold",
-                //         color:
-                //           selectedId === word.id ? foreground : mutedForeground,
-                //       },
-                //       selectedId === word.id &&
-                //         isSuccess === true && {
-                //           color: sucessForeground,
-                //         },
-                //       selectedId === word.id &&
-                //         isSuccess === false && {
-                //           color: destructiveForeground,
-                //         },
-                //     ]}
-                //   >
-                //     {word.content}
-                //   </Text>
-                // </Pressable>
               ))}
             </View>
           </ScrollView>
@@ -255,7 +188,7 @@ export function FlashCardItem({ exercise, onResult, onContinue }: Props) {
                     {
                       exercise.words.find(
                         ({ id }) => id === exercise.correctWordId
-                      )?.content
+                      )?.content[languageCode]
                     }
                   </Text>
                 </View>
@@ -310,6 +243,8 @@ function FlashCardWord({
     destructive,
     destructiveForeground,
   } = useTheme();
+  const { languageCode } = useLanguageCode();
+  const { courseId } = useCourse();
   const layout = useWindowDimensions();
   const breakpoint = useBreakpoint();
   const { playSound } = useAudio({ source: word.audio });
@@ -381,7 +316,7 @@ function FlashCardWord({
             },
         ]}
       >
-        {word.content}
+        {word.content[courseId || "en"]}
       </Text>
     </Pressable>
   );

@@ -5,14 +5,15 @@ import { Pressable } from "react-native";
 import { Container } from "@/components/container";
 import { Metadata } from "@/components/metadata";
 import { Text, View } from "@/components/themed";
+import { languages } from "@/config/language";
 import { colors } from "@/constants/colors";
 import { layouts } from "@/constants/layouts";
-import { courses } from "@/content/courses";
 import { getCommonTranslation } from "@/content/translations";
 import { useBreakpoint } from "@/context/breakpoints";
 import { useCourse } from "@/context/course";
 import { useLanguageCode } from "@/context/language";
 import { useTheme } from "@/context/theme";
+import { SupportedLanguageCode } from "@/types";
 
 export default function Register() {
   const { border, accent, background, mutedForeground } = useTheme();
@@ -46,16 +47,17 @@ export default function Register() {
                 flexWrap: "wrap",
               }}
             >
-              {courses
-                .filter(({ id }) => id !== language)
-                .map((course, index) => (
+              {Object.keys(languages).map((key, index) => {
+                const code = key as SupportedLanguageCode;
+                const language = languages[code];
+                return (
                   <Pressable
                     key={index}
                     style={{
                       width: breakpoint == "sm" ? "48%" : "24%",
                     }}
                     onPress={() => {
-                      setCourseId(course.id);
+                      setCourseId(code);
                       router.push("/learn");
                     }}
                   >
@@ -82,7 +84,7 @@ export default function Register() {
                           }}
                         >
                           <Image
-                            source={course.image}
+                            source={language.flag}
                             style={{ width: "100%", height: "100%" }}
                           />
                         </View>
@@ -93,12 +95,13 @@ export default function Register() {
                             color: mutedForeground,
                           }}
                         >
-                          {course.name}
+                          {language.name}
                         </Text>
                       </View>
                     )}
                   </Pressable>
-                ))}
+                );
+              })}
             </View>
           </View>
         </Container>

@@ -7,7 +7,7 @@ import { Placement } from "react-native-popover-view/dist/Types";
 import { Text, View } from "@/components/themed";
 import { getLanguage, languages } from "@/config/language";
 import { layouts } from "@/constants/layouts";
-import { useLanguageCode } from "@/context/language";
+import { useCourse } from "@/context/course";
 import { useTheme } from "@/context/theme";
 import { SupportedLanguageCode } from "@/types";
 
@@ -15,10 +15,12 @@ interface Props {
   excludes?: SupportedLanguageCode[];
 }
 
-export function SelectLanguage({ excludes }: Props) {
-  const { border, mutedForeground, accent, background } = useTheme();
-  const { languageCode, setLanguageCode } = useLanguageCode();
+export function SelectCourse({ excludes }: Props) {
+  const { border, accent, background, mutedForeground } = useTheme();
   const [isVisiable, setIsVisiable] = useState(false);
+  const { courseId, setCourseId } = useCourse();
+
+  if (!courseId) return null;
 
   return (
     <Popover
@@ -42,17 +44,12 @@ export function SelectLanguage({ excludes }: Props) {
           }}
           onPress={() => setIsVisiable(!isVisiable)}
         >
-          <View>
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "800",
-                color: mutedForeground,
-                textTransform: "uppercase",
-              }}
-            >
-              {getLanguage(languageCode)?.name}
-            </Text>
+          <View style={{ height: 28, aspectRatio: 4 / 3, overflow: "hidden" }}>
+            <Image
+              source={getLanguage(courseId).flag}
+              contentFit="cover"
+              style={{ flex: 1 }}
+            />
           </View>
         </Pressable>
       }
@@ -66,6 +63,24 @@ export function SelectLanguage({ excludes }: Props) {
           minWidth: 300,
         }}
       >
+        <View
+          style={{
+            padding: layouts.padding,
+            borderBottomWidth: layouts.borderWidth,
+            borderBottomColor: border,
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 16,
+              fontWeight: "bold",
+              color: mutedForeground,
+              textAlign: "center",
+            }}
+          >
+            Select Course
+          </Text>
+        </View>
         {Object.keys(languages).map((key, index) => {
           const code = key as SupportedLanguageCode;
           const language = languages[code];
@@ -79,7 +94,7 @@ export function SelectLanguage({ excludes }: Props) {
               key={index}
               onPress={() => {
                 setIsVisiable(false);
-                setLanguageCode(code);
+                setCourseId(code);
               }}
             >
               {({ hovered, pressed }) => (
@@ -92,16 +107,19 @@ export function SelectLanguage({ excludes }: Props) {
                     backgroundColor: hovered || pressed ? accent : background,
                   }}
                 >
-                  <Image
-                    source={language.flag}
+                  <View
                     style={{
-                      width: 32,
+                      height: 28,
                       aspectRatio: 4 / 3,
-                      borderRadius: layouts.padding / 2,
-                      borderWidth: layouts.borderWidth,
-                      borderColor: border,
+                      overflow: "hidden",
                     }}
-                  />
+                  >
+                    <Image
+                      source={language.flag}
+                      contentFit="cover"
+                      style={{ flex: 1 }}
+                    />
+                  </View>
                   <Text>{language.name}</Text>
                 </View>
               )}

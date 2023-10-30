@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "test": "jest --watchAll",
     "format": "prettier --write . --ignore-path .gitignore",
-    "check:format": "prettier --check . --ignore-path .gitignore"
+    "check:format": "prettier --check . --ignore-path .gitignore",
+    "check:types": "tsc --pretty --noEmit"
   },
   "jest": {
     "preset": "jest-expo"

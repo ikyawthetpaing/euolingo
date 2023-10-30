@@ -8,7 +8,7 @@ import { Text, View } from "@/components/themed";
 import { Button } from "@/components/ui/button";
 import { layouts } from "@/constants/layouts";
 import { useTheme } from "@/context/theme";
-import { CourseExercise } from "@/types";
+import { Exercise } from "@/types/course";
 
 interface Props extends PressableProps {
   circleRadius: number;
@@ -17,7 +17,7 @@ interface Props extends PressableProps {
   index: number;
   lessonDescription: string;
   totalExercise: number;
-  currentExercise: CourseExercise;
+  currentExercise: Exercise;
 }
 
 export function LessonItem({
@@ -107,6 +107,7 @@ export function LessonItem({
             gap: layouts.padding,
             justifyContent: "space-between",
             alignItems: "center",
+            flexWrap: "wrap",
           }}
         >
           <Text

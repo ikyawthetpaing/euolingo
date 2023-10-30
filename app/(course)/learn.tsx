@@ -8,16 +8,18 @@ import { Metadata } from "@/components/metadata";
 import { Text, View } from "@/components/themed";
 import { Button } from "@/components/ui/button";
 import { layouts } from "@/constants/layouts";
-import { getCourseContentById } from "@/content/courses";
+import { courseContent } from "@/content/courses/data";
 import { useBreakpoint } from "@/context/breakpoints";
 import { useCourse } from "@/context/course";
+import { useLanguageCode } from "@/context/language";
 import { useTheme } from "@/context/theme";
-import { CourseChapter } from "@/types";
+import { Chapter } from "@/types/course";
 
 const CAMP = 16;
 const CIRCLE_RADUIS = 48;
 
 export default function Learn() {
+  const { languageCode } = useLanguageCode();
   const { courseId, courseProgress } = useCourse();
   const { mutedForeground, border, accent } = useTheme();
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -26,13 +28,12 @@ export default function Learn() {
   let isOdd = true;
   let translateX = 0;
 
-  const course = courseId ? getCourseContentById(courseId) : null;
-  const currentSection = course?.sections.find(
+  const currentSection = courseContent.sections.find(
     ({ id }) => id == courseProgress.currentSectionId
   );
   if (!currentSection) return null;
 
-  const renderCourseChapter = (chapter: CourseChapter) => (
+  const renderCourseChapter = (chapter: Chapter) => (
     <View
       key={chapter.id}
       style={{
@@ -63,9 +64,11 @@ export default function Learn() {
           }}
         >
           <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-            {chapter.title}
+            {chapter.title[languageCode]}
           </Text>
-          <Text style={{ color: mutedForeground }}>{chapter.description}</Text>
+          <Text style={{ color: mutedForeground }}>
+            {chapter.description[languageCode]}
+          </Text>
         </View>
         <Button
           variant="outline"
@@ -115,7 +118,7 @@ export default function Learn() {
               currentExercise={currentExercise}
               isCurrentLesson={isCurrentLesson}
               isFinishedLesson={isFinishedLesson}
-              lessonDescription={lession.description}
+              lessonDescription={lession.description[languageCode]}
               totalExercise={lession.exercises.length}
               style={{ transform: [{ translateX }] }}
             />
@@ -175,7 +178,7 @@ export default function Learn() {
                 textAlign: "center",
               }}
             >
-              {currentSection?.title}
+              {currentSection.title[languageCode]}
             </Text>
           </View>
         </View>

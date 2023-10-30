@@ -24,77 +24,77 @@ export type NavItem = {
   href: Href;
 };
 
-export type Course = {
-  id: SupportedLanguageCode;
-  name: string;
-  image: string;
-};
+// export type Course = {
+//   id: SupportedLanguageCode;
+//   name: string;
+//   image: string;
+// };
 
-export interface ExerciseWord {
-  id: number;
-  content: string;
-  audio: AVPlaybackSource;
-}
+// export interface ExerciseWord {
+//   id: number;
+//   content: string;
+//   audio: AVPlaybackSource;
+// }
 
-export interface ExerciseType {
-  id: number;
-  type: "flashCard" | "listening";
-}
+// export interface ExerciseType {
+//   id: number;
+//   type: "flashCard" | "listening";
+// }
 
-export interface FlashCardExerciseWord extends ExerciseWord {
-  image: string;
-}
+// export interface FlashCardExerciseWord extends ExerciseWord {
+//   image: string;
+// }
 
-export interface FlashCardExercise extends ExerciseType {
-  question: string;
-  words: FlashCardExerciseWord[];
-  correctWordId: number;
-}
+// export interface FlashCardExercise extends ExerciseType {
+//   question: string;
+//   words: FlashCardExerciseWord[];
+//   correctWordId: number;
+// }
 
-export interface ListeningExercise extends ExerciseType {
-  audio: string;
-  sentence: string;
-  availableAnswers: ExerciseWord[];
-  correctOrderIds: number[];
-}
+// export interface ListeningExercise extends ExerciseType {
+//   audio: string;
+//   sentence: string;
+//   availableAnswers: ExerciseWord[];
+//   correctOrderIds: number[];
+// }
 
-export interface ExerciseItemProps {
-  onResult: (sucess: boolean) => void;
-  onContinue: () => void;
-}
+// export interface ExerciseItemProps {
+//   onResult: (sucess: boolean) => void;
+//   onContinue: () => void;
+// }
 
-export type CourseExerciseItem = FlashCardExercise | ListeningExercise;
+// export type CourseExerciseItem = FlashCardExercise | ListeningExercise;
 
-export type CourseExercise = {
-  id: number;
-  xp: number;
-  mode: "easy" | "medium" | "hard";
-  items: CourseExerciseItem[];
-};
+// export type CourseExercise = {
+//   id: number;
+//   xp: number;
+//   mode: "easy" | "medium" | "hard";
+//   items: CourseExerciseItem[];
+// };
 
-export type CourseLesson = {
-  id: number;
-  description: string;
-  exercises: CourseExercise[];
-};
+// export type CourseLesson = {
+//   id: number;
+//   description: string;
+//   exercises: CourseExercise[];
+// };
 
-export type CourseChapter = {
-  id: number;
-  title: string;
-  description: string;
-  lessons: CourseLesson[];
-};
+// export type CourseChapter = {
+//   id: number;
+//   title: string;
+//   description: string;
+//   lessons: CourseLesson[];
+// };
 
-export type CourseSection = {
-  id: number;
-  title: string;
-  chapters: CourseChapter[];
-};
+// export type CourseSection = {
+//   id: number;
+//   title: string;
+//   chapters: CourseChapter[];
+// };
 
-export type CourseContent = {
-  id: SupportedLanguageCode;
-  sections: CourseSection[];
-};
+// export type CourseContent = {
+//   id: SupportedLanguageCode;
+//   sections: CourseSection[];
+// };
 
 export type CourseProgress = {
   currentSectionId: number;
