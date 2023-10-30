@@ -7,6 +7,8 @@ import React, {
   useState,
 } from "react";
 
+import { validLanguages } from "@/config/language";
+import { DEFAULT_LANGUAGE_CODE } from "@/constants/default";
 import { LANGUAGE_ID_STORAGE_KEY } from "@/constants/storage-key";
 import { getLocalData, setLocalData } from "@/lib/local-storage";
 import { SupportedLanguageCode } from "@/types";
@@ -28,16 +30,14 @@ export function useLanguageCode() {
   return context;
 }
 
-const validLanguages: SupportedLanguageCode[] = ["en", "mm", "jp", "th"];
-
 interface Props {
   children: React.ReactNode;
 }
 
 export function LanguageCodeProvider({ children }: Props) {
-  const defaultLanguage: SupportedLanguageCode = "en";
-  const [language, setLanguage] =
-    useState<SupportedLanguageCode>(defaultLanguage);
+  const [language, setLanguage] = useState<SupportedLanguageCode>(
+    DEFAULT_LANGUAGE_CODE
+  );
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
@@ -53,8 +53,8 @@ export function LanguageCodeProvider({ children }: Props) {
           setLanguage(languageKey as SupportedLanguageCode);
         } else {
           // If languageKey is not valid, set the default language to "en"
-          setLanguage(defaultLanguage);
-          await setLocalData(LANGUAGE_ID_STORAGE_KEY, defaultLanguage);
+          setLanguage(DEFAULT_LANGUAGE_CODE);
+          await setLocalData(LANGUAGE_ID_STORAGE_KEY, DEFAULT_LANGUAGE_CODE);
         }
       } catch (error) {
         console.error("Error fetching language:", error);

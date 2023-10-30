@@ -18,7 +18,7 @@ import { SupportedLanguageCode } from "@/types";
 export default function Register() {
   const { border, accent, background, mutedForeground } = useTheme();
   const breakpoint = useBreakpoint();
-  const { languageCode: language } = useLanguageCode();
+  const { languageCode } = useLanguageCode();
   const { setCourseId } = useCourse();
 
   return (
@@ -38,7 +38,7 @@ export default function Register() {
             <Text
               style={{ fontSize: 32, fontWeight: "800", textAlign: "center" }}
             >
-              {getCommonTranslation("iWantToLearn", language)}
+              {getCommonTranslation("iWantToLearn", languageCode)}
             </Text>
             <View
               style={{
@@ -49,6 +49,7 @@ export default function Register() {
             >
               {Object.keys(languages).map((key, index) => {
                 const code = key as SupportedLanguageCode;
+                if (languageCode === code) return null;
                 const language = languages[code];
                 return (
                   <Pressable

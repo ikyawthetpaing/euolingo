@@ -7,18 +7,24 @@ import React, {
   useState,
 } from "react";
 
-import { COURSE_PROGRESS_DEFAULT } from "@/constants/default";
+import { validLanguages } from "@/config/language";
+import {
+  DEFAULT_COURSE_ID,
+  DEFAULT_COURSE_PROGRESS,
+} from "@/constants/default";
 import {
   COURSE_PROGRESS_STORAGE_KEY,
   CURRENT_COURSE_ID_STORAGE_KEY,
 } from "@/constants/storage-key";
 import { getLocalData, setLocalData } from "@/lib/local-storage";
-import { CourseProgress, SupportedLanguageCode } from "@/types";
+import { SupportedLanguageCode } from "@/types";
+import { CourseProgress } from "@/types/course";
 
 type CourseContextType = {
   courseId: SupportedLanguageCode | null;
   setCourseId: Dispatch<SetStateAction<SupportedLanguageCode | null>>;
   courseProgress: CourseProgress;
+  setCourseProgress: Dispatch<SetStateAction<CourseProgress>>;
 };
 
 const CourseContext = createContext<CourseContextType | undefined>(undefined);
@@ -38,7 +44,7 @@ interface Props {
 export function CourseProvider({ children }: Props) {
   const [courseId, setCourseId] = useState<SupportedLanguageCode | null>(null);
   const [courseProgress, setCourseProgress] = useState<CourseProgress>(
-    COURSE_PROGRESS_DEFAULT
+    DEFAULT_COURSE_PROGRESS
   );
   const [isInitialized, setIsInitialized] = useState(false);
 
@@ -46,15 +52,51 @@ export function CourseProvider({ children }: Props) {
     const courseProgressKey = COURSE_PROGRESS_STORAGE_KEY(courseId);
     const storedCourseProgress = await getLocalData(courseProgressKey);
 
-    if (storedCourseProgress) {
-      setCourseProgress(JSON.parse(storedCourseProgress) as CourseProgress);
-    } else {
-      setCourseProgress(COURSE_PROGRESS_DEFAULT);
-      await setLocalData(
-        courseProgressKey,
-        JSON.stringify(COURSE_PROGRESS_DEFAULT)
-      );
+    try {
+      if (storedCourseProgress) {
+        const parsedCourseProgress = JSON.parse(
+          storedCourseProgress
+        ) as CourseProgress;
+        if (isValidCourseProgress(parsedCourseProgress)) {
+          setCourseProgress(parsedCourseProgress);
+        } else {
+          handleInvalidCourseProgress();
+        }
+      } else {
+        setCourseProgress(DEFAULT_COURSE_PROGRESS);
+        await setLocalData(
+          courseProgressKey,
+          JSON.stringify(DEFAULT_COURSE_PROGRESS)
+        );
+      }
+    } catch (error) {
+      console.error("Error parsing stored course progress data:", error);
+      handleInvalidCourseProgress();
     }
+  };
+
+  const isValidCourseProgress = (
+    parsedCourseProgress: any
+  ): parsedCourseProgress is CourseProgress => {
+    if (
+      parsedCourseProgress &&
+      typeof parsedCourseProgress === "object" &&
+      "sectionId" in parsedCourseProgress &&
+      "chapterId" in parsedCourseProgress &&
+      "lessonId" in parsedCourseProgress &&
+      "exerciseId" in parsedCourseProgress &&
+      typeof parsedCourseProgress.sectionId === "number" &&
+      typeof parsedCourseProgress.chapterId === "number" &&
+      typeof parsedCourseProgress.lessonId === "number" &&
+      typeof parsedCourseProgress.exerciseId === "number"
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  const handleInvalidCourseProgress = () => {
+    setCourseProgress(DEFAULT_COURSE_PROGRESS);
   };
 
   useEffect(() => {
@@ -62,15 +104,17 @@ export function CourseProvider({ children }: Props) {
       try {
         let storedCourseId = await getLocalData(CURRENT_COURSE_ID_STORAGE_KEY);
 
-        // Handle the case where course_id is not in supported courses
-        // const validCourseId = supportedCourses.includes(
-        //   storedCourseId as SupportedLanguageCode
-        // );
-
-        if (storedCourseId) {
+        if (
+          storedCourseId &&
+          validLanguages.includes(storedCourseId as SupportedLanguageCode)
+        ) {
           const COURSE_ID = storedCourseId as SupportedLanguageCode;
           handleCourseProgress(COURSE_ID);
           setCourseId(COURSE_ID);
+        } else {
+          // Handle the case where stored course ID is not supported
+          // Set courseId to a default value, for example, "en"
+          setCourseId(DEFAULT_COURSE_ID);
         }
       } catch (error) {
         console.error("Error fetching course ID:", error);
@@ -82,7 +126,7 @@ export function CourseProvider({ children }: Props) {
     };
 
     initializeCourse();
-  }, []); // Empty dependency array ensures the effect runs once after the initial render
+  }, []); // Empty dependency array ensures that this effect runs once after the initial render
 
   useEffect(() => {
     if (isInitialized && courseId !== null) {
@@ -91,10 +135,18 @@ export function CourseProvider({ children }: Props) {
     }
   }, [courseId, isInitialized]);
 
+  useEffect(() => {
+    if (isInitialized && courseId !== null) {
+      const courseProgressKey = COURSE_PROGRESS_STORAGE_KEY(courseId);
+      setLocalData(courseProgressKey, JSON.stringify(courseProgress));
+    }
+  }, [courseProgress, isInitialized]);
+
   const courseContextValue: CourseContextType = {
     courseId,
     setCourseId,
     courseProgress,
+    setCourseProgress,
   };
 
   return (

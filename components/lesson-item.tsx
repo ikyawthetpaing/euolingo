@@ -78,13 +78,13 @@ export function LessonItem({
               }}
             >
               {isCurrentLesson ? (
-                <Icon name="star" size={24} color={primaryForeground} />
+                <Icon name="star" size={32} color={primaryForeground} />
               ) : isFinishedLesson ? (
-                <Icon name="check" size={24} color={primaryForeground} />
+                <Icon name="check" size={32} color={primaryForeground} />
               ) : index === 0 ? (
-                <Icon name="skip" size={24} color={primaryForeground} />
+                <Icon name="skip" size={32} color={primaryForeground} />
               ) : (
-                <Icon name="lock" size={24} color={muted} />
+                <Icon name="lock" size={32} color={muted} />
               )}
             </View>
           </View>

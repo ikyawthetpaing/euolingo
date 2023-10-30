@@ -1,6 +1,6 @@
 import { AVPlaybackSource } from "expo-av";
 
-import { Translations } from "@/types";
+import { SupportedLanguageCode, Translations } from "@/types";
 
 export interface ExerciseItemProps {
   onResult: (sucess: boolean) => void;
@@ -10,7 +10,7 @@ export interface ExerciseItemProps {
 export interface ExerciseWord {
   id: number;
   content: Translations;
-  audio: AVPlaybackSource;
+  audio: Audio;
 }
 
 export interface ExerciseType {
@@ -65,4 +65,19 @@ export type Section = {
 
 export type Course = {
   sections: Section[];
+};
+
+export type Audio = {
+  [key in SupportedLanguageCode]: AVPlaybackSource;
+};
+
+export type CourseAudio = {
+  [key: string]: Audio;
+};
+
+export type CourseProgress = {
+  sectionId: number;
+  chapterId: number;
+  lessonId: number;
+  exerciseId: number;
 };

@@ -1,20 +1,13 @@
 import ExerciseScreen from "@/components/exercise/screens/exercise";
 import { Metadata } from "@/components/metadata";
-import { CURRENT } from "@/constants/dev";
-import { getExerxise } from "@/content/courses";
+import { getExercise } from "@/content/courses";
 import { useCourse } from "@/context/course";
 
 export default function Lesson() {
-  const { courseId } = useCourse();
+  const { courseId, courseProgress } = useCourse();
   if (!courseId) return null;
 
-  const exercise = getExerxise({
-    courseId,
-    chapterId: CURRENT.chapterId,
-    sectionId: CURRENT.sectionId,
-    lessonId: CURRENT.lessonId,
-    exerciseId: CURRENT.exerciseId,
-  });
+  const exercise = getExercise(courseProgress);
   if (!exercise) return null;
 
   return (

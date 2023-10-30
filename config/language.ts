@@ -22,3 +22,7 @@ export const languages = {
 export function getLanguage(code: SupportedLanguageCode) {
   return languages[code];
 }
+
+export const validLanguages: SupportedLanguageCode[] = Object.keys(
+  languages
+).map((key) => key as SupportedLanguageCode);

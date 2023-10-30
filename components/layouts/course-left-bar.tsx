@@ -1,4 +1,4 @@
-import { Link, usePathname } from "expo-router";
+import { Link, router, usePathname } from "expo-router";
 import { Pressable } from "react-native";
 
 import { Icon } from "@/components/icons";
@@ -60,7 +60,7 @@ export function CourseLeftBar({ navItems, appName }: Props) {
         const isActive =
           pathname === navItem.href || pathname.startsWith(navItem.href);
         return (
-          <Pressable key={index}>
+          <Pressable key={index} onPress={() => router.push(navItem.href)}>
             {({ pressed, hovered }) => (
               <View
                 style={{

@@ -7,7 +7,9 @@ import { Shell } from "@/components/shell";
 import { Text, View } from "@/components/themed";
 import { Button } from "@/components/ui/button";
 import { layouts } from "@/constants/layouts";
+import { nextProgress } from "@/content/courses";
 import { useBreakpoint } from "@/context/breakpoints";
+import { useCourse } from "@/context/course";
 import { IconName } from "@/types";
 
 interface Props {
@@ -46,6 +48,15 @@ const exerciseResults: {
 export default function LessonOutrolayout(props: Props) {
   const breakpoint = useBreakpoint();
   const layout = useWindowDimensions();
+  const { courseProgress, setCourseProgress } = useCourse();
+
+  const onContinue = () => {
+    const nextCourseProgress = nextProgress(courseProgress);
+    if (nextCourseProgress) {
+      setCourseProgress(nextCourseProgress);
+    }
+    router.push("/learn");
+  };
 
   return (
     <Shell>
@@ -129,7 +140,7 @@ export default function LessonOutrolayout(props: Props) {
           </View>
         </View>
         <View>
-          <Button onPress={() => router.push("/learn")}>Continue</Button>
+          <Button onPress={onContinue}>Continue</Button>
         </View>
       </Container>
     </Shell>

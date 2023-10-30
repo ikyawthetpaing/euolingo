@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { router } from "expo-router";
 
 import { sound } from "@/assets/audios/sound";

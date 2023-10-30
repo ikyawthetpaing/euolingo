@@ -29,7 +29,7 @@ export default function Learn() {
   let translateX = 0;
 
   const currentSection = courseContent.sections.find(
-    ({ id }) => id == courseProgress.currentSectionId
+    ({ id }) => id == courseProgress.sectionId
   );
   if (!currentSection) return null;
 
@@ -98,15 +98,14 @@ export default function Learn() {
               : (translateX -= CIRCLE_RADUIS);
           }
 
-          const isCurrentChapter =
-            courseProgress.currentChapterId === chapter.id;
+          const isCurrentChapter = courseProgress.chapterId === chapter.id;
           const isCurrentLesson =
-            isCurrentChapter && courseProgress.currentLessonId === lession.id;
+            isCurrentChapter && courseProgress.lessonId === lession.id;
           const isFinishedLesson =
-            (isCurrentChapter && lession.id < courseProgress.currentLessonId) ||
-            chapter.id < courseProgress.currentChapterId;
+            (isCurrentChapter && lession.id < courseProgress.lessonId) ||
+            chapter.id < courseProgress.chapterId;
           const currentExercise = lession.exercises.find(
-            ({ id }) => id === courseProgress.currentExerciseId
+            ({ id }) => id === courseProgress.exerciseId
           );
           if (!currentExercise) return null;
 

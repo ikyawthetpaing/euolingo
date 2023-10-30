@@ -243,11 +243,10 @@ function FlashCardWord({
     destructive,
     destructiveForeground,
   } = useTheme();
-  const { languageCode } = useLanguageCode();
   const { courseId } = useCourse();
   const layout = useWindowDimensions();
   const breakpoint = useBreakpoint();
-  const { playSound } = useAudio({ source: word.audio });
+  const { playSound } = useAudio({ source: word.audio[courseId || "en"] });
 
   return (
     <Pressable
