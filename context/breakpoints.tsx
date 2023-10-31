@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Dimensions, Platform } from "react-native";
+import { Dimensions } from "react-native";
 
 import { isWeb } from "@/lib/utils";
 

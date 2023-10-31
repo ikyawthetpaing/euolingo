@@ -3,6 +3,7 @@ import { Pressable } from "react-native";
 
 import { Icon } from "@/components/icons";
 import { View } from "@/components/themed";
+import { colors } from "@/constants/colors";
 import { layouts } from "@/constants/layouts";
 import { useTheme } from "@/context/theme";
 import { NavItem } from "@/types";
@@ -35,9 +36,9 @@ export function MobileTabsBar({ navItems }: Props) {
                   padding: layouts.padding * 0.5,
                   borderWidth: layouts.borderWidth,
                   borderRadius: layouts.padding,
-                  borderColor: isActive ? border : layouts.transparentColor,
+                  borderColor: isActive ? border : colors.transparent,
                   backgroundColor:
-                    pressed || hovered ? accent : layouts.transparentColor,
+                    pressed || hovered ? accent : colors.transparent,
                 }}
               >
                 <Icon

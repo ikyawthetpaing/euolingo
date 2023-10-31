@@ -8,14 +8,12 @@ import React, {
 } from "react";
 
 import { validLanguages } from "@/config/language";
-import {
-  DEFAULT_COURSE_ID,
-  DEFAULT_COURSE_PROGRESS,
-} from "@/constants/default";
+import { DEFAULT_COURSE_PROGRESS } from "@/constants/default";
 import {
   COURSE_PROGRESS_STORAGE_KEY,
   CURRENT_COURSE_ID_STORAGE_KEY,
 } from "@/constants/storage-key";
+import { getExercise } from "@/content/courses";
 import { getLocalData, setLocalData } from "@/lib/local-storage";
 import { SupportedLanguageCode } from "@/types";
 import { CourseProgress } from "@/types/course";
@@ -57,7 +55,10 @@ export function CourseProvider({ children }: Props) {
         const parsedCourseProgress = JSON.parse(
           storedCourseProgress
         ) as CourseProgress;
-        if (isValidCourseProgress(parsedCourseProgress)) {
+        if (
+          isValidCourseProgress(parsedCourseProgress) &&
+          isValidCourseProgressIds(parsedCourseProgress)
+        ) {
           setCourseProgress(parsedCourseProgress);
         } else {
           handleInvalidCourseProgress();
@@ -95,6 +96,10 @@ export function CourseProvider({ children }: Props) {
     return false;
   };
 
+  const isValidCourseProgressIds = (courseProgress: CourseProgress) => {
+    return !!getExercise(courseProgress);
+  };
+
   const handleInvalidCourseProgress = () => {
     setCourseProgress(DEFAULT_COURSE_PROGRESS);
   };
@@ -111,10 +116,6 @@ export function CourseProvider({ children }: Props) {
           const COURSE_ID = storedCourseId as SupportedLanguageCode;
           handleCourseProgress(COURSE_ID);
           setCourseId(COURSE_ID);
-        } else {
-          // Handle the case where stored course ID is not supported
-          // Set courseId to a default value, for example, "en"
-          setCourseId(DEFAULT_COURSE_ID);
         }
       } catch (error) {
         console.error("Error fetching course ID:", error);

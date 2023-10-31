@@ -11,6 +11,7 @@ import { Icon } from "@/components/icons";
 import { Text, View } from "@/components/themed";
 import { Button } from "@/components/ui/button";
 import { colors } from "@/constants/colors";
+import { DEFAULT_COURSE_ID } from "@/constants/default";
 import { layouts } from "@/constants/layouts";
 import { useBreakpoint } from "@/context/breakpoints";
 import { useCourse } from "@/context/course";
@@ -32,18 +33,13 @@ export function FlashCardItem({ exercise, onResult, onContinue }: Props) {
   const shuffled = useMemo(() => shuffleArray(exercise.words), [exercise]);
 
   const { languageCode } = useLanguageCode();
-  const breakpoint = useBreakpoint();
   const {
-    mutedForeground,
-    muted,
-    foreground,
     destructive,
     destructiveForeground,
     background,
     sucess,
     sucessForeground,
   } = useTheme();
-  const window = useWindowDimensions();
 
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
@@ -246,7 +242,9 @@ function FlashCardWord({
   const { courseId } = useCourse();
   const layout = useWindowDimensions();
   const breakpoint = useBreakpoint();
-  const { playSound } = useAudio({ source: word.audio[courseId || "en"] });
+  const { playSound } = useAudio({
+    source: word.audio[courseId || DEFAULT_COURSE_ID],
+  });
 
   return (
     <Pressable
@@ -315,7 +313,7 @@ function FlashCardWord({
             },
         ]}
       >
-        {word.content[courseId || "en"]}
+        {word.content[courseId || DEFAULT_COURSE_ID]}
       </Text>
     </Pressable>
   );

@@ -6,7 +6,8 @@ import {
 } from "@react-navigation/native";
 import { useColorScheme } from "react-native";
 
-import { Colors, themeColors } from "@/constants/colors";
+import { themeColors } from "@/constants/colors";
+import { Colors } from "@/types";
 
 type ThemeContextType = Colors;
 

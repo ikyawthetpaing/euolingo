@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { router, Stack } from "expo-router";
+import { Stack } from "expo-router";
 
 import { Container } from "@/components/container";
 import { CourseLeftBar } from "@/components/layouts/course-left-bar";

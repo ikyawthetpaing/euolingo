@@ -43,6 +43,7 @@ export function LessonItem({
   const [isVisiable, setIsVisiable] = useState(false);
   const openPopover = () => setIsVisiable(true);
   const closePopover = () => setIsVisiable(false);
+
   return (
     <Popover
       isVisible={isVisiable}

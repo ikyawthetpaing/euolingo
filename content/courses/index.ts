@@ -1,11 +1,5 @@
 import { courseContent } from "@/content/courses/data";
-import {
-  CourseProgress,
-  Exercise,
-  ExerciseItem,
-  FlashCardExercise,
-  ListeningExercise,
-} from "@/types/course";
+import { CourseProgress, Exercise } from "@/types/course";
 
 export function getExercise({
   sectionId,
@@ -50,16 +44,4 @@ export function nextProgress(current: CourseProgress): CourseProgress | null {
   }
 
   return null;
-}
-
-export function isFlashCardExercise(
-  exercise: ExerciseItem
-): exercise is FlashCardExercise {
-  return (exercise as FlashCardExercise).question !== undefined;
-}
-
-export function isListeningExercise(
-  exercise: ExerciseItem
-): exercise is ListeningExercise {
-  return (exercise as ListeningExercise).audio !== undefined;
 }

@@ -26,6 +26,6 @@ export default function ExerciseItem({
       />
     );
   } else {
-    return <Text>Unknown exercise type</Text>;
+    return <Text>Unknown exercise</Text>;
   }
 }

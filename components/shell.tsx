@@ -1,5 +1,5 @@
-import { STATUSBAR_HEIGHT } from "./status-bar";
-import { View, ViewProps } from "./themed";
+import { STATUSBAR_HEIGHT } from "@/components/status-bar";
+import { View, ViewProps } from "@/components/themed";
 
 interface Props extends ViewProps {
   children: React.ReactNode;

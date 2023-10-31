@@ -1,25 +1,4 @@
-export type Colors = {
-  background: string;
-  foreground: string;
-  primary: string;
-  primaryForeground: string;
-  secondary: string;
-  secondaryForeground: string;
-  muted: string;
-  mutedForeground: string;
-  accent: string;
-  accentForeground: string;
-  destructive: string;
-  destructiveForeground: string;
-  sucess: string;
-  sucessForeground: string;
-  border: string;
-};
-
-type ThemeColors = {
-  light: Colors;
-  dark: Colors;
-};
+import { ThemeColors } from "@/types";
 
 export const themeColors: ThemeColors = {
   light: {

@@ -28,7 +28,6 @@ const exerciseResults: {
     icon: "bolt",
     color: "orange",
     type: "xp",
-
     title: "Total xp",
   },
   {

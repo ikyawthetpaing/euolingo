@@ -37,11 +37,6 @@ export const courseConfig: CourseConfig = {
       label: "Profile",
       href: "/profile",
     },
-    {
-      icon: "menuDots",
-      label: "More",
-      href: "/more",
-    },
   ],
   mobileNavItems: [
     {

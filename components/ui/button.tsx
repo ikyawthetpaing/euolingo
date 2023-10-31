@@ -9,6 +9,7 @@ import {
   ViewStyle,
 } from "react-native";
 
+import { colors } from "@/constants/colors";
 import { layouts } from "@/constants/layouts";
 import { useTheme } from "@/context/theme";
 import { changeColorOpacity } from "@/lib/utils";
@@ -101,13 +102,13 @@ const useThemedStyles = ({
     outline: {
       borderWidth: layouts.borderWidth,
       borderColor: border,
-      backgroundColor: hovered || pressed ? accent : layouts.transparentColor,
+      backgroundColor: hovered || pressed ? accent : colors.transparent,
     },
     ghost: {
       backgroundColor:
         pressed || hovered
           ? changeColorOpacity(accentForeground, 0.15)
-          : layouts.transparentColor,
+          : colors.transparent,
     },
   });
 

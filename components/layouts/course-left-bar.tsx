@@ -3,6 +3,7 @@ import { Pressable } from "react-native";
 
 import { Icon } from "@/components/icons";
 import { Text, View } from "@/components/themed";
+import { colors } from "@/constants/colors";
 import { layouts } from "@/constants/layouts";
 import { useBreakpoint } from "@/context/breakpoints";
 import { useTheme } from "@/context/theme";
@@ -42,7 +43,7 @@ export function CourseLeftBar({ navItems, appName }: Props) {
               color: "#1cb0f6",
             }}
           >
-            {appName}
+            {appName.toLowerCase()}
           </Text>
         ) : (
           <Text
@@ -74,9 +75,9 @@ export function CourseLeftBar({ navItems, appName }: Props) {
                   paddingVertical: layouts.padding,
                   borderWidth: layouts.borderWidth,
                   borderRadius: layouts.padding,
-                  borderColor: isActive ? border : layouts.transparentColor,
+                  borderColor: isActive ? border : colors.transparent,
                   backgroundColor:
-                    pressed || hovered ? accent : layouts.transparentColor,
+                    pressed || hovered ? accent : colors.transparent,
                 }}
               >
                 <Icon
