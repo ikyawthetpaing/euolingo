@@ -1,6 +1,6 @@
 import { Image } from "expo-image";
 import { router } from "expo-router";
-import { ScrollView } from "react-native";
+import { ScrollView, useWindowDimensions } from "react-native";
 
 import { Container } from "@/components/container";
 import { Metadata } from "@/components/metadata";
@@ -10,33 +10,34 @@ import { layouts } from "@/constants/layouts";
 import { getCommonTranslation } from "@/content/translations";
 import { useBreakpoint } from "@/context/breakpoints";
 import { useLanguageCode } from "@/context/language";
+import { MAIN_HEADER_HEIGHT } from "@/components/layouts/main-header";
 
 export default function Home() {
   const breakpoint = useBreakpoint();
   const { languageCode: language } = useLanguageCode();
+  const screen = useWindowDimensions();
 
   return (
     <>
       <Metadata />
       <View style={{ flex: 1 }}>
         <Container
-          style={{
-            padding:
-              breakpoint === "sm" ? layouts.padding : layouts.padding * 2,
-          }}
         >
           <ScrollView
             contentContainerStyle={{
-              flex: 1,
+              minHeight: screen.height - MAIN_HEADER_HEIGHT,
+              padding:
+              breakpoint === "sm" ? layouts.padding : layouts.padding * 2,
             }}
             showsVerticalScrollIndicator={false}
           >
             {breakpoint === "sm" ? (
-              <View style={{ flex: 1 }}>
+              <View style={{ flex: 1, gap: layouts.padding * 2 }}>
                 <View
                   style={{
                     flex: 1,
                     justifyContent: "center",
+                    
                   }}
                 >
                   <View>
