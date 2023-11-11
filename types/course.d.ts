@@ -7,47 +7,53 @@ export interface ExerciseItemProps {
   onContinue: () => void;
 }
 
-export interface ExerciseWord {
+export interface Exercise {
   id: number;
-  content: Translations;
-  audio: Audio;
+  question: Translations;
+  type: "flashCard" | "translate";
 }
 
-export interface ExerciseType {
-  id: number;
-  type: "flashCard" | "listening";
+export interface ExerciseWord {
+  content: Translations;
+  audio?: AudioSources;
 }
 
 export interface FlashCardExerciseWord extends ExerciseWord {
+  id: number;
   image: string;
 }
 
-export interface FlashCardExercise extends ExerciseType {
-  question: Translations;
+export interface FlashCardExercise extends Exercise {
   words: FlashCardExerciseWord[];
   correctWordId: number;
 }
 
-export interface ListeningExercise extends ExerciseType {
-  audio: string;
-  sentence: string;
-  availableAnswers: ExerciseWord[];
-  correctOrderIds: number[];
+export interface TranslateExerciseWord extends ExerciseWord {}
+
+export type TranslateExerciseOption = {
+  id: number;
+  word: TranslateExerciseWord;
+};
+
+export interface TranslateExercise extends Exercise {
+  sentence: TranslateExerciseWord;
+  options: TranslateExerciseOption[];
+  correctOrderIds: { [key in SupportedLanguageCode]: number[] };
 }
 
-export type ExerciseItem = FlashCardExercise | ListeningExercise;
+export type ExerciseItemVariant = FlashCardExercise | TranslateExercise;
 
-export type Exercise = {
+export type ExerciseSet = {
   id: number;
   xp: number;
-  mode: "easy" | "medium" | "hard";
-  items: ExerciseItem[];
+  difficulty: "easy" | "medium" | "hard";
+  items: ExerciseItemVariant[];
 };
 
 export type Lesson = {
   id: number;
   description: Translations;
-  exercises: Exercise[];
+  exercises: ExerciseSet[];
 };
 
 export type Chapter = {
@@ -67,17 +73,17 @@ export type Course = {
   sections: Section[];
 };
 
-export type Audio = {
+export type AudioSources = {
   [key in SupportedLanguageCode]: AVPlaybackSource;
 };
 
-export type CourseAudio = {
-  [key: string]: Audio;
+export type CourseAudios = {
+  [key: string]: AudioSources;
 };
 
-export type CourseProgress = {
-  sectionId: number;
-  chapterId: number;
-  lessonId: number;
-  exerciseId: number;
+export type CourseProgression = {
+  sectionIndex: number;
+  chapterIndex: number;
+  lessonIndex: number;
+  exerciseIndex: number;
 };

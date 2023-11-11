@@ -1,30 +1,37 @@
 import { Text } from "@/components/themed";
 import {
   ExerciseItemProps,
-  ExerciseItem as ExerciseItemType,
+  ExerciseItemVariant as ExerciseItemType,
   FlashCardExercise,
+  TranslateExercise,
 } from "@/types/course";
 
 import { FlashCardItem } from "./flash-card-item";
+import { TranslateItem } from "./translate-item";
 
 interface Props extends ExerciseItemProps {
   exerciseItem: ExerciseItemType;
 }
 
-export default function ExerciseItem({
+export default function ExerciseItems({
   exerciseItem,
   onContinue,
   onResult,
 }: Props) {
   if (exerciseItem.type === "flashCard") {
-    const item = exerciseItem as FlashCardExercise;
     return (
       <FlashCardItem
-        exercise={item}
+        exercise={exerciseItem as FlashCardExercise}
         onResult={onResult}
         onContinue={onContinue}
       />
     );
+  } else if (exerciseItem.type === "translate") {
+    return <TranslateItem
+      exercise={exerciseItem as TranslateExercise}
+      onResult={onResult}
+      onContinue={onContinue}
+    />;
   } else {
     return <Text>Unknown exercise</Text>;
   }

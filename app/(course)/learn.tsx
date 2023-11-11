@@ -22,18 +22,17 @@ export default function Learn() {
   const { languageCode } = useLanguageCode();
   const { courseId, courseProgress } = useCourse();
   const { mutedForeground, border, accent } = useTheme();
-  const [headerHeight, setHeaderHeight] = useState(0);
   const breakpoint = useBreakpoint();
+
+  const [headerHeight, setHeaderHeight] = useState(0);
 
   let isOdd = true;
   let translateX = 0;
 
-  const currentSection = courseContent.sections.find(
-    ({ id }) => id == courseProgress.sectionId
-  );
+  const currentSection = courseContent.sections[courseProgress.sectionIndex]
   if (!currentSection) return null;
 
-  const renderCourseChapter = (chapter: Chapter) => (
+  const renderCourseChapter = (chapter: Chapter, chapterIndex: number) => (
     <View
       key={chapter.id}
       style={{
@@ -71,9 +70,8 @@ export default function Learn() {
           </Text>
         </View>
         <Button
-          variant="outline"
+          variant="ghost"
           viewStyle={{
-            borderColor: mutedForeground,
             padding: layouts.padding * 0.5,
           }}
         >
@@ -87,32 +85,31 @@ export default function Learn() {
           alignItems: "center",
         }}
       >
-        {chapter.lessons.map((lession, index) => {
+        {chapter.lessons.map((lession, lessonIndex) => {
           if (translateX > CAMP || translateX < -CAMP) {
             isOdd = !isOdd;
           }
 
-          if (index !== 0) {
+          if (lessonIndex !== 0) {
             isOdd
               ? (translateX += CIRCLE_RADUIS)
               : (translateX -= CIRCLE_RADUIS);
           }
 
-          const isCurrentChapter = courseProgress.chapterId === chapter.id;
+          const isCurrentChapter = courseProgress.chapterIndex === chapterIndex;
           const isCurrentLesson =
-            isCurrentChapter && courseProgress.lessonId === lession.id;
+            isCurrentChapter && courseProgress.lessonIndex === lessonIndex;
           const isFinishedLesson =
-            (isCurrentChapter && lession.id < courseProgress.lessonId) ||
-            chapter.id < courseProgress.chapterId;
-          const currentExercise = lession.exercises.find(
-            ({ id }) => id === courseProgress.exerciseId
-          );
+            (isCurrentChapter && lessonIndex < courseProgress.lessonIndex) ||
+            chapterIndex < courseProgress.chapterIndex;
+          const currentExercise = lession.exercises[courseProgress.exerciseIndex]
+          
           if (!currentExercise) return null;
 
           return (
             <LessonItem
-              key={index}
-              index={index}
+              key={lessonIndex}
+              index={lessonIndex}
               circleRadius={CIRCLE_RADUIS}
               currentExercise={currentExercise}
               isCurrentLesson={isCurrentLesson}
@@ -120,6 +117,12 @@ export default function Learn() {
               lessonDescription={lession.description[languageCode]}
               totalExercise={lession.exercises.length}
               style={{ transform: [{ translateX }] }}
+              courseProgression={{
+                sectionIndex: courseProgress.sectionIndex,
+                chapterIndex: chapterIndex,
+                lessonIndex: lessonIndex,
+                exerciseIndex: 0
+              }}
             />
           );
         })}
@@ -192,8 +195,8 @@ export default function Learn() {
           }}
           showsVerticalScrollIndicator={false}
         >
-          {currentSection.chapters.map((chapter) =>
-            renderCourseChapter(chapter)
+          {currentSection.chapters.map((chapter, index) =>
+            renderCourseChapter(chapter, index)
           )}
         </ScrollView>
       </View>

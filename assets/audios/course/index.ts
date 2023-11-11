@@ -1,4 +1,4 @@
-import { CourseAudio } from "@/types/course";
+import { CourseAudios } from "@/types/course";
 
 export const courseAudio = {
   rice: {
@@ -25,4 +25,4 @@ export const courseAudio = {
     mm: require("./files/water-jp-audio.mp3"),
     th: require("./files/water-jp-audio.mp3"),
   },
-} satisfies CourseAudio;
+} satisfies CourseAudios;

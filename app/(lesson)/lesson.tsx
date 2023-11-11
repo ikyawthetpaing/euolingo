@@ -1,6 +1,6 @@
 import ExerciseScreen from "@/components/exercise/screens/exercise";
 import { Metadata } from "@/components/metadata";
-import { getExercise } from "@/content/courses";
+import { getExercise } from "@/content/courses/data";
 import { useCourse } from "@/context/course";
 
 export default function Lesson() {
@@ -16,7 +16,7 @@ export default function Lesson() {
         title="Lesson"
         description="Learn a new lesson every day to keep your streak."
       />
-      <ExerciseScreen exercise={exercise} />
+      <ExerciseScreen exercise={exercise} increaseProgress={true} />
     </>
   );
 }

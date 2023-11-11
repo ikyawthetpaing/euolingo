@@ -8,6 +8,7 @@ import { CourseProvider } from "@/context/course";
 import { LanguageCodeProvider } from "@/context/language";
 import { ProtectedRouteProvider } from "@/context/protected-route";
 import { ThemeProvider } from "@/context/theme";
+import { StatusBar } from "@/components/status-bar";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -50,6 +51,7 @@ export default function RootLayout() {
           <CourseProvider>
             <ProtectedRouteProvider>
               <Stack screenOptions={{ headerShown: false }} />
+              <StatusBar />
             </ProtectedRouteProvider>
           </CourseProvider>
         </LanguageCodeProvider>

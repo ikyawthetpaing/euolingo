@@ -7,9 +7,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 
-import { Icon } from "@/components/icons";
 import { Text, View } from "@/components/themed";
-import { Button } from "@/components/ui/button";
 import { colors } from "@/constants/colors";
 import { DEFAULT_COURSE_ID } from "@/constants/default";
 import { layouts } from "@/constants/layouts";
@@ -25,6 +23,8 @@ import {
   FlashCardExerciseWord,
 } from "@/types/course";
 
+import { ExerciseItemEvent } from "./exercise-item-event";
+
 interface Props extends ExerciseItemProps {
   exercise: FlashCardExercise;
 }
@@ -33,13 +33,6 @@ export function FlashCardItem({ exercise, onResult, onContinue }: Props) {
   const shuffled = useMemo(() => shuffleArray(exercise.words), [exercise]);
 
   const { languageCode } = useLanguageCode();
-  const {
-    destructive,
-    destructiveForeground,
-    background,
-    sucess,
-    sucessForeground,
-  } = useTheme();
 
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
@@ -104,115 +97,19 @@ export function FlashCardItem({ exercise, onResult, onContinue }: Props) {
           </ScrollView>
         </View>
       </View>
-      <View
-        style={{
-          paddingVertical: layouts.padding,
-          borderTopWidth: layouts.borderWidth,
-          borderTopColor:
-            isSuccess === null
-              ? colors.transparent
-              : isSuccess === true
-              ? sucessForeground
-              : destructiveForeground,
-          paddingHorizontal: layouts.padding,
-          backgroundColor:
-            isSuccess === null
-              ? background
-              : isSuccess === true
-              ? sucess
-              : destructive,
+      <ExerciseItemEvent
+        checkButtonDisabled={selectedId === null}
+        correctAnswer={
+          exercise.words.find(({ id }) => id === exercise.correctWordId)
+            ?.content[languageCode] || ""
+        }
+        isSuccess={isSuccess}
+        onPressCheck={onCheck}
+        onPressContinue={() => {
+          reset();
+          onContinue();
         }}
-      >
-        {isSuccess !== null ? (
-          <View
-            style={{
-              gap: layouts.padding,
-              backgroundColor: colors.transparent,
-            }}
-          >
-            <View
-              style={{
-                backgroundColor: colors.transparent,
-                gap: layouts.padding,
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: layouts.padding,
-                  backgroundColor: colors.transparent,
-                }}
-              >
-                <Icon
-                  name={isSuccess ? "checkCircle" : "closeCircle"}
-                  color={isSuccess ? sucessForeground : destructiveForeground}
-                />
-                <Text
-                  style={{
-                    fontSize: 18,
-                    fontWeight: "bold",
-                    color: isSuccess ? sucessForeground : destructiveForeground,
-                  }}
-                >
-                  {isSuccess ? "Excellect" : "Incorrect"}
-                </Text>
-              </View>
-              {isSuccess === false && (
-                <View
-                  style={{
-                    backgroundColor: colors.transparent,
-                    flexDirection: "row",
-                    gap: layouts.padding,
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      fontWeight: "bold",
-                      color: destructiveForeground,
-                    }}
-                  >
-                    Correct Answer:
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      color: destructiveForeground,
-                    }}
-                  >
-                    {
-                      exercise.words.find(
-                        ({ id }) => id === exercise.correctWordId
-                      )?.content[languageCode]
-                    }
-                  </Text>
-                </View>
-              )}
-            </View>
-            <Button
-              onPress={() => {
-                reset();
-                onContinue();
-              }}
-              viewStyle={{
-                backgroundColor: isSuccess
-                  ? sucessForeground
-                  : destructiveForeground,
-              }}
-              textStyle={{
-                color: isSuccess ? sucess : destructive,
-              }}
-            >
-              Continue
-            </Button>
-          </View>
-        ) : (
-          <Button disabled={selectedId === null} onPress={onCheck}>
-            Check
-          </Button>
-        )}
-      </View>
+      />
     </View>
   );
 }
@@ -243,7 +140,7 @@ function FlashCardWord({
   const layout = useWindowDimensions();
   const breakpoint = useBreakpoint();
   const { playSound } = useAudio({
-    source: word.audio[courseId || DEFAULT_COURSE_ID],
+    source: word.audio ? word.audio[courseId!] : undefined,
   });
 
   return (

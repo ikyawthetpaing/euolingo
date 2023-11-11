@@ -8,7 +8,7 @@ import { Text, View } from "@/components/themed";
 import { Button } from "@/components/ui/button";
 import { layouts } from "@/constants/layouts";
 import { useTheme } from "@/context/theme";
-import { Exercise } from "@/types/course";
+import { CourseProgression, ExerciseSet } from "@/types/course";
 
 interface Props extends PressableProps {
   circleRadius: number;
@@ -17,7 +17,8 @@ interface Props extends PressableProps {
   index: number;
   lessonDescription: string;
   totalExercise: number;
-  currentExercise: Exercise;
+  currentExercise: ExerciseSet;
+  courseProgression: CourseProgression
 }
 
 export function LessonItem({
@@ -28,6 +29,7 @@ export function LessonItem({
   lessonDescription,
   totalExercise,
   currentExercise,
+  courseProgression,
   ...props
 }: Props) {
   const {
@@ -43,6 +45,8 @@ export function LessonItem({
   const [isVisiable, setIsVisiable] = useState(false);
   const openPopover = () => setIsVisiable(true);
   const closePopover = () => setIsVisiable(false);
+
+  const {sectionIndex: sectionId, chapterIndex: chapterId, lessonIndex: lessonId, exerciseIndex: exerciseId} = courseProgression;
 
   return (
     <Popover
@@ -136,7 +140,7 @@ export function LessonItem({
                   color: mutedForeground,
                 }}
               >
-                {currentExercise.mode}
+                {currentExercise.difficulty}
               </Text>
             </View>
           )}
@@ -146,12 +150,16 @@ export function LessonItem({
             ? "Prove your proficiency with Legendary"
             : isNotFinishedLesson
             ? "Complete all levels above to unlock this!"
-            : `Exercise ${currentExercise.id + 1} of ${totalExercise}`}
+            : `Exercise ${currentExercise.id} of ${totalExercise}`}
         </Text>
         <Button
           onPress={() => {
             closePopover();
-            router.push("/lesson");
+            if (isFinishedLesson) {
+              router.push(`/pratice/${sectionId}/${chapterId}/${lessonId}/${exerciseId}`);
+            } else {
+              router.push("/lesson");
+            }
           }}
           disabled={isNotFinishedLesson}
         >

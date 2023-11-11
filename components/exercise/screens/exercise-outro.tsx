@@ -7,52 +7,53 @@ import { Shell } from "@/components/shell";
 import { Text, View } from "@/components/themed";
 import { Button } from "@/components/ui/button";
 import { layouts } from "@/constants/layouts";
-import { nextProgress } from "@/content/courses";
 import { useBreakpoint } from "@/context/breakpoints";
 import { useCourse } from "@/context/course";
 import { IconName } from "@/types";
+import { useTheme } from "@/context/theme";
+import { nextProgress } from "@/content/courses/data";
 
 interface Props {
   xp: number;
   duration: string;
   target: string;
+  increaseProgress: boolean
 }
 
 const exerciseResults: {
   icon: IconName;
-  color: string;
-  type: keyof Props;
+  type: keyof Pick<Props, "xp" | "duration" | "target">;
   title: string;
 }[] = [
   {
     icon: "bolt",
-    color: "orange",
     type: "xp",
     title: "Total xp",
   },
   {
     icon: "clockCircle",
-    color: "blue",
     type: "duration",
     title: "Speedy",
   },
   {
     icon: "targetCircle",
-    color: "green",
     type: "target",
     title: "Good",
   },
 ];
 
 export default function LessonOutrolayout(props: Props) {
+  const {foreground, background} = useTheme();
   const breakpoint = useBreakpoint();
   const layout = useWindowDimensions();
   const { courseProgress, setCourseProgress } = useCourse();
 
   const onContinue = () => {
-    const nextCourseProgress = nextProgress(courseProgress);
-    if (nextCourseProgress) {
-      setCourseProgress(nextCourseProgress);
+    if (props.increaseProgress) {
+      const nextCourseProgress = nextProgress(courseProgress);
+      if (nextCourseProgress) {
+        setCourseProgress(nextCourseProgress);
+      }
     }
     router.push("/learn");
   };
@@ -84,7 +85,7 @@ export default function LessonOutrolayout(props: Props) {
                 style={{
                   padding: layouts.borderWidth,
                   borderRadius: layouts.padding,
-                  backgroundColor: result.color,
+                  backgroundColor: foreground,
                   width:
                     breakpoint === "sm"
                       ? layout.width / exerciseResults.length -
@@ -100,7 +101,7 @@ export default function LessonOutrolayout(props: Props) {
                     textAlign: "center",
                     textTransform: "uppercase",
                     fontWeight: "bold",
-                    color: "#fff",
+                    color: background,
                     fontSize: 12,
                     padding: layouts.padding / 4,
                   }}
@@ -122,11 +123,11 @@ export default function LessonOutrolayout(props: Props) {
                       alignItems: "center",
                     }}
                   >
-                    <Icon name={result.icon} color={result.color} />
+                    <Icon name={result.icon} color={foreground} />
                     <Text
                       style={{
                         fontWeight: "bold",
-                        color: result.color,
+                        color: foreground,
                         fontSize: 18,
                       }}
                     >

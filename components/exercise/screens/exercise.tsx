@@ -3,7 +3,6 @@ import { router } from "expo-router";
 
 import { sound } from "@/assets/audios/sound";
 import { Container } from "@/components/container";
-import ExerciseItem from "@/components/exercise/exercise-item";
 import LessonOutroScreen from "@/components/exercise/screens/exercise-outro";
 import { Icon } from "@/components/icons";
 import { SelectLanguage } from "@/components/select-language";
@@ -17,13 +16,15 @@ import { useCourse } from "@/context/course";
 import { useTheme } from "@/context/theme";
 import { useAudio } from "@/hooks/audio";
 import { calculatePrecentage, shuffleArray } from "@/lib/utils";
-import { Exercise } from "@/types/course";
+import { ExerciseSet } from "@/types/course";
+import ExerciseItems from "@/components/exercise/items/exercise-items";
 
 interface Props {
-  exercise: Exercise;
+  exercise: ExerciseSet;
+  increaseProgress: boolean;
 }
 
-export default function ExerciseScreen({ exercise }: Props) {
+export default function ExerciseScreen({ exercise, increaseProgress }: Props) {
   const shuffledExerciseItems = useMemo(
     () => shuffleArray(exercise.items),
     [exercise.items]
@@ -63,7 +64,7 @@ export default function ExerciseScreen({ exercise }: Props) {
   if (!courseId) return null;
 
   if (isFinished) {
-    return <LessonOutroScreen xp={exercise.xp} duration="2:30" target="80%" />;
+    return <LessonOutroScreen xp={exercise.xp} duration="2:30" target="80%" increaseProgress={increaseProgress}/>;
   }
 
   return (
@@ -136,7 +137,7 @@ export default function ExerciseScreen({ exercise }: Props) {
             <Text style={{ fontWeight: "800" }}>5</Text>
           </View>
         </View>
-        <ExerciseItem
+        <ExerciseItems
           exerciseItem={shuffledExerciseItems[currentIndex]}
           onContinue={onContinue}
           onResult={onResult}

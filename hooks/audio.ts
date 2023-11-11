@@ -2,19 +2,18 @@ import { useEffect, useState } from "react";
 import { Audio, AVPlaybackSource } from "expo-av";
 
 interface Props {
-  source: AVPlaybackSource;
+  source?: AVPlaybackSource;
 }
 
 export function useAudio({ source }: Props) {
   const [sound, setSound] = useState<Audio.Sound | undefined>(undefined);
 
   async function playSound() {
-    console.log("Loading Sound");
-    const { sound } = await Audio.Sound.createAsync(source);
-    setSound(sound);
-
-    console.log("Playing Sound");
-    await sound.playAsync();
+    if (source) {
+      const { sound } = await Audio.Sound.createAsync(source);
+      setSound(sound);
+      await sound.playAsync();
+    }
   }
 
   useEffect(() => {

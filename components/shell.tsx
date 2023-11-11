@@ -1,3 +1,5 @@
+import { useWindowDimensions } from "react-native";
+
 import { STATUSBAR_HEIGHT } from "@/components/status-bar";
 import { View, ViewProps } from "@/components/themed";
 
@@ -6,10 +8,15 @@ interface Props extends ViewProps {
 }
 
 export function Shell({ children, style, ...props }: Props) {
+  const screen = useWindowDimensions();
   return (
     <View
       style={[
-        { flex: 1, paddingTop: STATUSBAR_HEIGHT, position: "relative" },
+        {
+          minHeight: screen.height,
+          marginTop: STATUSBAR_HEIGHT,
+          position: "relative",
+        },
         style,
       ]}
       {...props}

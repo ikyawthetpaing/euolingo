@@ -13,16 +13,16 @@ import {
   COURSE_PROGRESS_STORAGE_KEY,
   CURRENT_COURSE_ID_STORAGE_KEY,
 } from "@/constants/storage-key";
-import { getExercise } from "@/content/courses";
 import { getLocalData, setLocalData } from "@/lib/local-storage";
 import { SupportedLanguageCode } from "@/types";
-import { CourseProgress } from "@/types/course";
+import { CourseProgression } from "@/types/course";
+import { getExercise } from "@/content/courses/data";
 
 type CourseContextType = {
   courseId: SupportedLanguageCode | null;
   setCourseId: Dispatch<SetStateAction<SupportedLanguageCode | null>>;
-  courseProgress: CourseProgress;
-  setCourseProgress: Dispatch<SetStateAction<CourseProgress>>;
+  courseProgress: CourseProgression;
+  setCourseProgress: Dispatch<SetStateAction<CourseProgression>>;
 };
 
 const CourseContext = createContext<CourseContextType | undefined>(undefined);
@@ -41,7 +41,7 @@ interface Props {
 
 export function CourseProvider({ children }: Props) {
   const [courseId, setCourseId] = useState<SupportedLanguageCode | null>(null);
-  const [courseProgress, setCourseProgress] = useState<CourseProgress>(
+  const [courseProgress, setCourseProgress] = useState<CourseProgression>(
     DEFAULT_COURSE_PROGRESS
   );
   const [isInitialized, setIsInitialized] = useState(false);
@@ -54,7 +54,7 @@ export function CourseProvider({ children }: Props) {
       if (storedCourseProgress) {
         const parsedCourseProgress = JSON.parse(
           storedCourseProgress
-        ) as CourseProgress;
+        ) as CourseProgression;
         if (
           isValidCourseProgress(parsedCourseProgress) &&
           isValidCourseProgressIds(parsedCourseProgress)
@@ -78,7 +78,7 @@ export function CourseProvider({ children }: Props) {
 
   const isValidCourseProgress = (
     parsedCourseProgress: any
-  ): parsedCourseProgress is CourseProgress => {
+  ): parsedCourseProgress is CourseProgression => {
     if (
       parsedCourseProgress &&
       typeof parsedCourseProgress === "object" &&
@@ -96,7 +96,7 @@ export function CourseProvider({ children }: Props) {
     return false;
   };
 
-  const isValidCourseProgressIds = (courseProgress: CourseProgress) => {
+  const isValidCourseProgressIds = (courseProgress: CourseProgression) => {
     return !!getExercise(courseProgress);
   };
 
