@@ -82,8 +82,8 @@ export type CourseAudios = {
 };
 
 export type CourseProgression = {
-  sectionIndex: number;
-  chapterIndex: number;
-  lessonIndex: number;
-  exerciseIndex: number;
+  sectionId: number;
+  chapterId: number;
+  lessonId: number;
+  exerciseId: number;
 };

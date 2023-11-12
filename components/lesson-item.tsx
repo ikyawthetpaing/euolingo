@@ -46,7 +46,7 @@ export function LessonItem({
   const openPopover = () => setIsVisiable(true);
   const closePopover = () => setIsVisiable(false);
 
-  const {sectionIndex: sectionId, chapterIndex: chapterId, lessonIndex: lessonId, exerciseIndex: exerciseId} = courseProgression;
+  const {sectionId: sectionId, chapterId: chapterId, lessonId: lessonId, exerciseId: exerciseId} = courseProgression;
 
   return (
     <Popover

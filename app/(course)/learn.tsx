@@ -29,7 +29,7 @@ export default function Learn() {
   let isOdd = true;
   let translateX = 0;
 
-  const currentSection = courseContent.sections[courseProgress.sectionIndex]
+  const currentSection = courseContent.sections[courseProgress.sectionId]
   if (!currentSection) return null;
 
   const renderCourseChapter = (chapter: Chapter, chapterIndex: number) => (
@@ -96,13 +96,13 @@ export default function Learn() {
               : (translateX -= CIRCLE_RADUIS);
           }
 
-          const isCurrentChapter = courseProgress.chapterIndex === chapterIndex;
+          const isCurrentChapter = courseProgress.chapterId === chapterIndex;
           const isCurrentLesson =
-            isCurrentChapter && courseProgress.lessonIndex === lessonIndex;
+            isCurrentChapter && courseProgress.lessonId === lessonIndex;
           const isFinishedLesson =
-            (isCurrentChapter && lessonIndex < courseProgress.lessonIndex) ||
-            chapterIndex < courseProgress.chapterIndex;
-          const currentExercise = lession.exercises[courseProgress.exerciseIndex]
+            (isCurrentChapter && lessonIndex < courseProgress.lessonId) ||
+            chapterIndex < courseProgress.chapterId;
+          const currentExercise = lession.exercises[courseProgress.exerciseId]
           
           if (!currentExercise) return null;
 
@@ -118,10 +118,10 @@ export default function Learn() {
               totalExercise={lession.exercises.length}
               style={{ transform: [{ translateX }] }}
               courseProgression={{
-                sectionIndex: courseProgress.sectionIndex,
-                chapterIndex: chapterIndex,
-                lessonIndex: lessonIndex,
-                exerciseIndex: 0
+                sectionId: courseProgress.sectionId,
+                chapterId: chapterIndex,
+                lessonId: lessonIndex,
+                exerciseId: 0
               }}
             />
           );

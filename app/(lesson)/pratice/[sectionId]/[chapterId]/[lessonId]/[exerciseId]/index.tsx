@@ -11,10 +11,10 @@ export default function Practice() {
     typeof value === "string" ? Number(value) : -1;
 
   const exercise = getExercise({
-    sectionIndex: toNumber(sectionId),
-    chapterIndex: toNumber(chapterId),
-    lessonIndex: toNumber(lessonId),
-    exerciseIndex: toNumber(exerciseId),
+    sectionId: toNumber(sectionId),
+    chapterId: toNumber(chapterId),
+    lessonId: toNumber(lessonId),
+    exerciseId: toNumber(exerciseId),
   });
   if (!exercise) return null;
 
