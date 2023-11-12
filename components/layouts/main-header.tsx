@@ -2,7 +2,7 @@ import { Link } from "expo-router";
 
 import { SelectLanguage } from "@/components/select-language";
 import { Text, View, ViewProps } from "@/components/themed";
-import { appConfig } from "@/config/app";
+import { siteConfig } from "@/config/site";
 import { layouts } from "@/constants/layouts";
 import { useBreakpoint } from "@/context/breakpoints";
 import { useTheme } from "@/context/theme";
@@ -46,7 +46,7 @@ export function MainHeader({ style, ...props }: Props) {
                 fontWeight: "bold",
               }}
             >
-              {appConfig.name.toLowerCase()}
+              {siteConfig.name.toLowerCase()}
             </Text>
           </Link>
           <SelectLanguage />

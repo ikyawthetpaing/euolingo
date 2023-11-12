@@ -1,6 +1,6 @@
 import Head from "expo-router/head";
 
-import { appConfig } from "@/config/app";
+import { siteConfig } from "@/config/site";
 
 interface Props {
   title?: string;
@@ -10,10 +10,10 @@ interface Props {
 export function Metadata({ title, description }: Props) {
   return (
     <Head>
-      <title>{title ? `${title} - ${appConfig.name}` : appConfig.name}</title>
+      <title>{title ? `${title} - ${siteConfig.name}` : siteConfig.name}</title>
       <meta
         name="description"
-        content={description ? description : appConfig.description}
+        content={description ? description : siteConfig.description}
       />
     </Head>
   );

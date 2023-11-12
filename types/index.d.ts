@@ -24,12 +24,17 @@ export type NavItem = {
   href: Href;
 };
 
-export type AppConfig = {
+export type SiteConfig = {
   name: string;
   title: string;
   description: string | undefined;
-  author: string;
-  keywords: string[];
+  url: string;
+  author: {name: string; username: string; url: string;};
+  ogImage: string;
+  appleTouchIcon: string;
+  icon32x32: string;
+  icon16x16: string;
+  manifest: string
 };
 
 export type Colors = {

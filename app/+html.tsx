@@ -1,6 +1,6 @@
 import { ScrollViewStyleReset } from "expo-router/html";
 
-import { appConfig } from "@/config/app";
+import { siteConfig } from "@/config/site";
 
 // This file is web-only and used to configure the root HTML for every
 // web page during static rendering.
@@ -12,8 +12,6 @@ export default function Root({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="author" content={appConfig.author} />
-        <meta name="keywords" content={appConfig.keywords.join(", ")} />
         {/* 
           This viewport disables scaling which makes the mobile website act more like a native app.
           However this does reduce built-in accessibility. If you want to enable scaling, use this instead:
@@ -32,6 +30,48 @@ export default function Root({ children }: { children: React.ReactNode }) {
         {/* Using raw CSS styles as an escape-hatch to ensure the background color never flickers in dark-mode. */}
         <style dangerouslySetInnerHTML={{ __html: responsiveBackground }} />
         {/* Add any additional <head> elements that you want globally available on web... */}
+
+        {/* added */}
+        <title>{siteConfig.title}</title>
+        <meta name="description" content={siteConfig.description} />
+        <link rel="author" href={siteConfig.author.url} />
+        <meta name="author" content={siteConfig.author.name} />
+        <meta property="og:title" content={siteConfig.title} />
+        <meta property="og:description" content={siteConfig.description} />
+        <meta property="og:url" content={siteConfig.url} />
+        <meta property="og:site_name" content={siteConfig.name} />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="2400" />
+        <meta property="og:image:height" content="1260" />
+        <meta property="og:image" content={siteConfig.ogImage} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content={siteConfig.author.username} />
+        <meta name="twitter:title" content={siteConfig.title} />
+        <meta name="twitter:description" content={siteConfig.description} />
+        <meta name="twitter:image" content={siteConfig.ogImage} />
+        <meta name="twitter:site" content={siteConfig.author.username} />
+        <meta name="apple-mobile-web-app-title" content={siteConfig.name} />
+        <meta name="application-name" content={siteConfig.name} />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href={siteConfig.appleTouchIcon}
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href={siteConfig.icon32x32}
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href={siteConfig.icon16x16}
+        />
+        <link rel="manifest" href={siteConfig.manifest} />
       </head>
       <body>{children}</body>
     </html>
