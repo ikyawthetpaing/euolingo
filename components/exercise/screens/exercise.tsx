@@ -3,6 +3,7 @@ import { router } from "expo-router";
 
 import { sound } from "@/assets/audios/sound";
 import { Container } from "@/components/container";
+import ExerciseItems from "@/components/exercise/items/exercise-items";
 import LessonOutroScreen from "@/components/exercise/screens/exercise-outro";
 import { Icon } from "@/components/icons";
 import { SelectLanguage } from "@/components/select-language";
@@ -17,7 +18,6 @@ import { useTheme } from "@/context/theme";
 import { useAudio } from "@/hooks/audio";
 import { calculatePrecentage, shuffleArray } from "@/lib/utils";
 import { ExerciseSet } from "@/types/course";
-import ExerciseItems from "@/components/exercise/items/exercise-items";
 
 interface Props {
   exercise: ExerciseSet;
@@ -64,7 +64,14 @@ export default function ExerciseScreen({ exercise, increaseProgress }: Props) {
   if (!courseId) return null;
 
   if (isFinished) {
-    return <LessonOutroScreen xp={exercise.xp} duration="2:30" target="80%" increaseProgress={increaseProgress}/>;
+    return (
+      <LessonOutroScreen
+        xp={exercise.xp}
+        duration="2:30"
+        target="80%"
+        increaseProgress={increaseProgress}
+      />
+    );
   }
 
   return (

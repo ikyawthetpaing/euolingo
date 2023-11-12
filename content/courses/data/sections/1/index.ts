@@ -1,4 +1,5 @@
 import { Section } from "@/types/course";
+
 import { chapterOne } from "./chapters/1";
 
 export const sectionOne: Section = {
@@ -9,5 +10,5 @@ export const sectionOne: Section = {
     mm: "အပိုင်း 1- လူသစ်",
     th: "ส่วนที่ 1: มือใหม่",
   },
-  chapters: [chapterOne]
-}
+  chapters: [chapterOne],
+};

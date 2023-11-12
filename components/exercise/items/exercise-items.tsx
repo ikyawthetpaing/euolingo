@@ -27,11 +27,13 @@ export default function ExerciseItems({
       />
     );
   } else if (exerciseItem.type === "translate") {
-    return <TranslateItem
-      exercise={exerciseItem as TranslateExercise}
-      onResult={onResult}
-      onContinue={onContinue}
-    />;
+    return (
+      <TranslateItem
+        exercise={exerciseItem as TranslateExercise}
+        onResult={onResult}
+        onContinue={onContinue}
+      />
+    );
   } else {
     return <Text>Unknown exercise</Text>;
   }

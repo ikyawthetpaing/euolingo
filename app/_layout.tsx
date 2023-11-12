@@ -3,12 +3,12 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 
+import { StatusBar } from "@/components/status-bar";
 import { BreakpointsProvider } from "@/context/breakpoints";
 import { CourseProvider } from "@/context/course";
 import { LanguageCodeProvider } from "@/context/language";
 import { ProtectedRouteProvider } from "@/context/protected-route";
 import { ThemeProvider } from "@/context/theme";
-import { StatusBar } from "@/components/status-bar";
 
 export {
   // Catch any errors thrown by the Layout component.

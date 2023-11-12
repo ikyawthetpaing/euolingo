@@ -7,17 +7,17 @@ import { Shell } from "@/components/shell";
 import { Text, View } from "@/components/themed";
 import { Button } from "@/components/ui/button";
 import { layouts } from "@/constants/layouts";
+import { nextProgress } from "@/content/courses/data";
 import { useBreakpoint } from "@/context/breakpoints";
 import { useCourse } from "@/context/course";
-import { IconName } from "@/types";
 import { useTheme } from "@/context/theme";
-import { nextProgress } from "@/content/courses/data";
+import { IconName } from "@/types";
 
 interface Props {
   xp: number;
   duration: string;
   target: string;
-  increaseProgress: boolean
+  increaseProgress: boolean;
 }
 
 const exerciseResults: {
@@ -43,7 +43,7 @@ const exerciseResults: {
 ];
 
 export default function LessonOutrolayout(props: Props) {
-  const {foreground, background} = useTheme();
+  const { foreground, background } = useTheme();
   const breakpoint = useBreakpoint();
   const layout = useWindowDimensions();
   const { courseProgress, setCourseProgress } = useCourse();

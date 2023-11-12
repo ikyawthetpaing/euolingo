@@ -29,12 +29,12 @@ export type SiteConfig = {
   title: string;
   description: string | undefined;
   url: string;
-  author: {name: string; username: string; url: string;};
+  author: { name: string; username: string; url: string };
   ogImage: string;
   appleTouchIcon: string;
   icon32x32: string;
   icon16x16: string;
-  manifest: string
+  manifest: string;
 };
 
 export type Colors = {

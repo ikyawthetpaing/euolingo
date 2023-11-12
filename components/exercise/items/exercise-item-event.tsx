@@ -20,12 +20,8 @@ export function ExerciseItemEvent({
   onPressContinue,
   checkButtonDisabled,
 }: Props) {
-  const {
-    destructive,
-    destructiveForeground,
-    sucess,
-    sucessForeground,
-  } = useTheme();
+  const { destructive, destructiveForeground, sucess, sucessForeground } =
+    useTheme();
 
   return (
     <View

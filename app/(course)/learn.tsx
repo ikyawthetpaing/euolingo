@@ -29,7 +29,7 @@ export default function Learn() {
   let isOdd = true;
   let translateX = 0;
 
-  const currentSection = courseContent.sections[courseProgress.sectionId]
+  const currentSection = courseContent.sections[courseProgress.sectionId];
   if (!currentSection) return null;
 
   const renderCourseChapter = (chapter: Chapter, chapterIndex: number) => (
@@ -102,8 +102,8 @@ export default function Learn() {
           const isFinishedLesson =
             (isCurrentChapter && lessonIndex < courseProgress.lessonId) ||
             chapterIndex < courseProgress.chapterId;
-          const currentExercise = lession.exercises[courseProgress.exerciseId]
-          
+          const currentExercise = lession.exercises[courseProgress.exerciseId];
+
           if (!currentExercise) return null;
 
           return (
@@ -121,7 +121,7 @@ export default function Learn() {
                 sectionId: courseProgress.sectionId,
                 chapterId: chapterIndex,
                 lessonId: lessonIndex,
-                exerciseId: 0
+                exerciseId: 0,
               }}
             />
           );

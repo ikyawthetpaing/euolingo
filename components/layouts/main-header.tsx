@@ -1,13 +1,12 @@
 import { Link } from "expo-router";
 
+import { Container } from "@/components/container";
 import { SelectLanguage } from "@/components/select-language";
 import { Text, View, ViewProps } from "@/components/themed";
 import { siteConfig } from "@/config/site";
 import { layouts } from "@/constants/layouts";
 import { useBreakpoint } from "@/context/breakpoints";
 import { useTheme } from "@/context/theme";
-
-import { Container } from "@/components/container";
 
 export const MAIN_HEADER_HEIGHT = 60;
 
@@ -36,7 +35,8 @@ export function MainHeader({ style, ...props }: Props) {
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
-            paddingHorizontal: breakpoint === "sm" ? layouts.padding : layouts.padding * 2
+            paddingHorizontal:
+              breakpoint === "sm" ? layouts.padding : layouts.padding * 2,
           }}
         >
           <Link href="/">

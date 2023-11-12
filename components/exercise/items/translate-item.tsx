@@ -53,15 +53,17 @@ export function TranslateItem({ exercise, onContinue, onResult }: Props) {
   };
 
   const onPressContinue = () => {
-      setSelectOptions([]);
-      setIsSuccess(null);
-      onContinue();
-  }
+    setSelectOptions([]);
+    setIsSuccess(null);
+    onContinue();
+  };
 
   const correctAnswer = exercise.correctOrderIds[languageCode]
     .map(
       (id) =>
-        exercise.options.find((option) => option.id === id)?.word.content[languageCode]
+        exercise.options.find((option) => option.id === id)?.word.content[
+          languageCode
+        ]
     )
     .join(" ");
 

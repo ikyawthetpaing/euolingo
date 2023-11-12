@@ -6,8 +6,8 @@ import { CourseRightBar } from "@/components/layouts/course-right-bar";
 import { MobileTabsBar } from "@/components/layouts/mobile-tabs-bar";
 import { Shell } from "@/components/shell";
 import { View } from "@/components/themed";
-import { siteConfig } from "@/config/site";
 import { courseConfig } from "@/config/course";
+import { siteConfig } from "@/config/site";
 import { useBreakpoint } from "@/context/breakpoints";
 import { useCourse } from "@/context/course";
 

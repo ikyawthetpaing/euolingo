@@ -13,10 +13,10 @@ import {
   COURSE_PROGRESS_STORAGE_KEY,
   CURRENT_COURSE_ID_STORAGE_KEY,
 } from "@/constants/storage-key";
+import { getExercise } from "@/content/courses/data";
 import { getLocalData, setLocalData } from "@/lib/local-storage";
 import { SupportedLanguageCode } from "@/types";
 import { CourseProgression } from "@/types/course";
-import { getExercise } from "@/content/courses/data";
 
 type CourseContextType = {
   courseId: SupportedLanguageCode | null;

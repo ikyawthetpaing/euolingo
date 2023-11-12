@@ -18,11 +18,17 @@
   "background_color": "#ffffff",
   "display": "standalone",
   "orientation": "any",
-  "start_URL": "https://euolingo.vercel.app/",
+  "start_url": "https://euolingo.vercel.app/",
   "prefer_related_applications": true,
   "related_applications": [
-    "https://ikyawthetpaing.vercel.app",
-    "https://voxellax.vercel.app"
+    {
+      "platform": "web",
+      "url": "https://ikyawthetpaing.vercel.app"
+    },
+    {
+      "platform": "web",
+      "url": "https://voxellax.vercel.app"
+    }
   ],
   "lang": "en-US"
 }

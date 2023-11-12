@@ -18,7 +18,7 @@ interface Props extends PressableProps {
   lessonDescription: string;
   totalExercise: number;
   currentExercise: ExerciseSet;
-  courseProgression: CourseProgression
+  courseProgression: CourseProgression;
 }
 
 export function LessonItem({
@@ -46,7 +46,12 @@ export function LessonItem({
   const openPopover = () => setIsVisiable(true);
   const closePopover = () => setIsVisiable(false);
 
-  const {sectionId: sectionId, chapterId: chapterId, lessonId: lessonId, exerciseId: exerciseId} = courseProgression;
+  const {
+    sectionId: sectionId,
+    chapterId: chapterId,
+    lessonId: lessonId,
+    exerciseId: exerciseId,
+  } = courseProgression;
 
   return (
     <Popover
@@ -156,7 +161,9 @@ export function LessonItem({
           onPress={() => {
             closePopover();
             if (isFinishedLesson) {
-              router.push(`/pratice/${sectionId}/${chapterId}/${lessonId}/${exerciseId}`);
+              router.push(
+                `/pratice/${sectionId}/${chapterId}/${lessonId}/${exerciseId}`
+              );
             } else {
               router.push("/lesson");
             }
