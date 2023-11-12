@@ -15,7 +15,7 @@ const config: ExpoConfig = {
   splash: {
     image: "./assets/images/splash.png",
     resizeMode: "contain",
-    backgroundColor: "#171717",
+    backgroundColor: "#DFEBF7",
   },
   assetBundlePatterns: ["**/*"],
   ios: {
@@ -24,13 +24,13 @@ const config: ExpoConfig = {
   android: {
     adaptiveIcon: {
       foregroundImage: "./assets/images/adaptive-icon.png",
-      backgroundColor: "#171717",
+      backgroundColor: "#DFEBF7",
     },
   },
   web: {
     bundler: "metro",
     output: "static",
-    favicon: "./assets/images/favicon.png",
+    favicon: "./assets/images/favicon.ico",
   },
   plugins: ["expo-router"],
   experiments: {

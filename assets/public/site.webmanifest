@@ -1,6 +1,7 @@
 {
-  "name": "Euolingo: The best way to learn a language",
   "short_name": "Euolingo",
+  "name": "Euolingo: The best way to learn a language",
+  "description": "The free, fun, and effective way to learn a language.",
   "icons": [
     {
       "src": "https://raw.githubusercontent.com/ikyawthetpaing/euolingo/main/assets/public/android-chrome-192x192.png",
@@ -15,5 +16,13 @@
   ],
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
-  "display": "standalone"
+  "display": "standalone",
+  "orientation": "any",
+  "start_URL": "https://euolingo.vercel.app/",
+  "prefer_related_applications": true,
+  "related_applications": [
+    "https://ikyawthetpaing.vercel.app",
+    "https://voxellax.vercel.app"
+  ],
+  "lang": "en-US"
 }
