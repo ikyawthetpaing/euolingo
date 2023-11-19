@@ -1,7 +1,7 @@
 import { Link, router, usePathname } from "expo-router";
 import { Pressable } from "react-native";
 
-import { Icon } from "@/components/icons";
+import { Icon, Icons } from "@/components/icons";
 import { Text, View } from "@/components/themed";
 import { colors } from "@/constants/colors";
 import { layouts } from "@/constants/layouts";
@@ -36,15 +36,7 @@ export function CourseLeftBar({ navItems, appName }: Props) {
         }}
       >
         {breakpoint == "xl" || breakpoint == "2xl" ? (
-          <Text
-            style={{
-              fontSize: 24,
-              fontWeight: "bold",
-              color: "#1cb0f6",
-            }}
-          >
-            {appName.toLowerCase()}
-          </Text>
+          <Icons.euolingo height={28} />
         ) : (
           <Text
             style={{

@@ -1,9 +1,11 @@
 import { Course, CourseProgression, ExerciseSet } from "@/types/course";
 
+import { characters } from "./characters";
 import { sectionOne } from "./sections/1";
 
 export const courseContent: Course = {
   sections: [sectionOne],
+  characters: characters,
 };
 
 export function getExercise({

@@ -10,7 +10,9 @@ interface Props {
 export function Metadata({ title, description }: Props) {
   return (
     <Head>
-      <title>{title ? `${title} - ${siteConfig.name}` : siteConfig.name}</title>
+      <title>
+        {title ? `${title} - ${siteConfig.name}` : siteConfig.title}
+      </title>
       <meta
         name="description"
         content={description ? description : siteConfig.description}

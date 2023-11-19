@@ -32,8 +32,6 @@ export default function Root({ children }: { children: React.ReactNode }) {
         {/* Add any additional <head> elements that you want globally available on web... */}
 
         {/* added */}
-        <title>{siteConfig.title}</title>
-        <meta name="description" content={siteConfig.description} />
         <link rel="author" href={siteConfig.author.url} />
         <meta name="author" content={siteConfig.author.name} />
         <meta property="og:title" content={siteConfig.title} />

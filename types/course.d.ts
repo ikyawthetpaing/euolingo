@@ -69,8 +69,18 @@ export type Section = {
   chapters: Chapter[];
 };
 
+export type Character = {
+  role: string;
+  dialogueItems: string[];
+};
+
+export type LanguageCharacters = {
+  [key in SupportedLanguageCode]: Character[];
+};
+
 export type Course = {
   sections: Section[];
+  characters: LanguageCharacters;
 };
 
 export type AudioSources = {

@@ -2,7 +2,16 @@ import { Href } from "expo-router";
 
 import { Icons } from "@/components/icons";
 
-export type SupportedLanguageCode = "en" | "mm" | "jp" | "th";
+export type SupportedLanguageCode =
+  | "en"
+  | "my"
+  | "ja"
+  | "th"
+  | "es"
+  | "fr"
+  | "cn"
+  | "ru"
+  | "hi";
 
 export type Languages = {
   [key in SupportedLanguageCode]: { name: string; flag: string };

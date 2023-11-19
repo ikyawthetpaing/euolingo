@@ -6,6 +6,7 @@ import { Placement } from "react-native-popover-view/dist/Types";
 
 import { Text, View } from "@/components/themed";
 import { getLanguage, languages } from "@/config/language";
+import { colors } from "@/constants/colors";
 import { layouts } from "@/constants/layouts";
 import { useCourse } from "@/context/course";
 import { useTheme } from "@/context/theme";
@@ -44,7 +45,13 @@ export function SelectCourse({ excludes }: Props) {
           }}
           onPress={() => setIsVisiable(!isVisiable)}
         >
-          <View style={{ height: 28, aspectRatio: 4 / 3, overflow: "hidden" }}>
+          <View
+            style={{
+              height: 28,
+              aspectRatio: 4 / 3,
+              overflow: "hidden",
+            }}
+          >
             <Image
               source={getLanguage(courseId).flag}
               contentFit="cover"
